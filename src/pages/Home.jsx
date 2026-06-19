@@ -75,6 +75,7 @@ const Home = () => {
                     minHeight: "100dvh",
                     display: "flex",
                     flexDirection: "column",
+                    width: "100vw",
                 }}
             >
                 <Navbar

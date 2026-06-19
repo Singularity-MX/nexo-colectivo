@@ -34,6 +34,7 @@ const Navbar = ({
                 background: "#000",
                 padding: "0 16px",
                 userSelect: "none",
+                width: isMobile ? "101vw" : "auto",
             }}
         >
             {/* LOGO */}
