@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Card, Typography, Grid } from "antd";
 import { motion } from "framer-motion";
-import { BlockMath } from "react-katex";
-import absorbancia from "../../../assets/imgs/absorbancia.jpg";
-import arbol from "../../../assets/imgs/arbol.png";
 import katex from "katex";
-import { useEffect, useRef } from "react";
 
+// === IMÁGENES ===
+
+import zonaHabitableIMG from "../../../assets/imgs/arbol.png";
+import transitoIMG from "../../../assets/imgs/arbol.png";
+import espectroIMG from "../../../assets/imgs/arbol.png";
+import arbolVidaIMG from "../../../assets/imgs/arbol.png";
+
+const { Title, Text, Paragraph } = Typography;
+const { useBreakpoint } = Grid;
+
+const ACCENT = "#5ad1c9";
+const MONO = "'JetBrains Mono', 'Courier New', monospace";
+
+/* =========================
+   KATEX BLOCK
+========================= */
 const MathBlock = ({ formula }) => {
   const ref = useRef(null);
-
   useEffect(() => {
     if (ref.current) {
       katex.render(formula, ref.current, {
@@ -18,162 +29,146 @@ const MathBlock = ({ formula }) => {
       });
     }
   }, [formula]);
-
-  return <div ref={ref} />;
+  return (
+    <div
+      ref={ref}
+      style={{
+        color: "#fff",
+        background: "rgba(255,255,255,0.04)",
+        border: "1px solid rgba(90,209,201,0.2)",
+        borderRadius: 4,
+        padding: "18px 16px",
+        overflowX: "auto",
+      }}
+    />
+  );
 };
-
-const { Title, Text, Paragraph } = Typography;
-const { useBreakpoint } = Grid;
 
 /* =========================
    ANIMACIONES BASE
 ========================= */
 const sectionVariant = {
   hidden: { opacity: 0, y: 25 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 const imageVariant = {
   hidden: { opacity: 0, scale: 0.98 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.7, ease: "easeOut" },
-  },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: "easeOut" } },
 };
 
 const stepContainer = {
   hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.18,
-    },
-  },
+  show: { transition: { staggerChildren: 0.15 } },
 };
 
 const stepVariant = {
   hidden: { opacity: 0, x: -15 },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
+  show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 /* =========================
-   STEPS (SIN CAMBIOS)
+   PRIMITIVOS DE ESTILO 
 ========================= */
-const steps = [
-  {
-    n: 1,
-    title: "Carga de imagen",
-    desc: "El usuario captura o importa una imagen de una hoja vegetal mediante cámara o archivo local.",
-  },
-  {
-    n: 2,
-    title: "Selección de modo de análisis",
-    desc: (
-      <>
-        Se define el tipo de muestreo:
-        <div style={{ marginTop: 6 }}>
-          • Punto único: análisis localizado de alta sensibilidad.<br />
-          • Multipunto: estimación global mediante promedios espaciales.
-        </div>
-      </>
-    ),
-  },
-  {
-    n: 3,
-    title: "Interacción sobre la imagen",
-    desc: "El usuario selecciona regiones específicas de la hoja directamente en la interfaz visual.",
-  },
-  {
-    n: 4,
-    title: "Procesamiento de color",
-    desc: "Se calcula el promedio de color en la región seleccionada, filtrando ruido por iluminación y valores extremos.",
-  },
-  {
-    n: 5,
-    title: "Generación del índice vegetal",
-    desc: "Se computa un índice basado en la relación entre los canales RGB normalizados como proxy de vigor vegetal.",
-  },
-];
 
-/* =========================
-   STEP ITEM (ANIMADO)
-========================= */
-const StepItem = ({ step }) => {
-  return (
-    <motion.div
-      variants={stepVariant}
+const Eyebrow = ({ children }) => (
+  <Text
+    style={{
+      fontFamily: MONO,
+      textTransform: "uppercase",
+      letterSpacing: 2.5,
+      color: ACCENT,
+      fontSize: 11,
+      fontWeight: 600,
+      display: "block",
+      textAlign: "center",
+      marginBottom: 6,
+    }}
+  >
+    {children}
+  </Text>
+);
+
+
+const HudPanel = ({ children, style = {} }) => (
+  <div
+    style={{
+      position: "relative",
+      background: "linear-gradient(160deg, rgba(10,14,28,0.92), rgba(4,6,14,0.96))",
+      border: "1px solid rgba(90,209,201,0.18)",
+      borderRadius: 4,
+      padding: "20px 22px",
+      clipPath:
+        "polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%)",
+      ...style,
+    }}
+  >
+    <div
       style={{
-        display: "flex",
-        alignItems: "flex-start",
-        gap: 14,
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: 2,
+        background: "linear-gradient(90deg, #5ad1c9, transparent)",
       }}
-    >
-      <div
-        style={{
-          width: 28,
-          height: 28,
-          borderRadius: "50%",
-          background: "#111",
-          color: "#fff",
-          fontSize: 13,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontWeight: 600,
-          flexShrink: 0,
-          marginTop: 2,
-        }}
-      >
-        {step.n}
-      </div>
+    />
+    {children}
+  </div>
+);
 
-      <div style={{ flex: 1 }}>
-        <div
-          style={{
-            fontWeight: 600,
-            fontSize: 15,
-            marginBottom: 6,
-            textAlign: "left",
-          }}
-        >
-          {step.title}
-        </div>
+const HudLabel = ({ children }) => (
+  <Text
+    style={{
+      fontFamily: MONO,
+      color: ACCENT,
+      fontSize: 11.5,
+      letterSpacing: 1.5,
+      fontWeight: 700,
+      textTransform: "uppercase",
+    }}
+  >
+    {children}
+  </Text>
+);
 
-        <div
-          style={{
-            textAlign: "justify",
-            lineHeight: 1.65,
-            color: "#333",
-            fontSize: 14,
-          }}
-        >
-          {step.desc}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+const BodyText = ({ children, style = {} }) => (
+  <Paragraph
+    style={{
+      color: "rgba(255,255,255,0.65)",
+      lineHeight: 1.75,
+      fontSize: 14.5,
+      textAlign: "left",
+      marginTop: 10,
+      marginBottom: 0,
+      ...style,
+    }}
+  >
+    {children}
+  </Paragraph>
+);
 
 /* =========================
    SECTION WRAPPER
 ========================= */
-const Section = ({ title, children }) => (
+const Section = ({ eyebrow, title, children }) => (
   <motion.div
     variants={sectionVariant}
     initial="hidden"
     whileInView="show"
-    viewport={{ once: true, amount: 0.25 }}
-    style={{ marginTop: 28 }}
+    viewport={{ once: true, amount: 0.2 }}
+    style={{ marginTop: 36 }}
   >
-    <Title level={4} style={{ textAlign: "center", marginBottom: 16 }}>
+    {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+    <Title
+      level={3}
+      style={{
+        textAlign: "center",
+        marginBottom: 18,
+        color: "#fff",
+        fontSize: "clamp(19px, 3.5vw, 24px)",
+      }}
+    >
       {title}
     </Title>
     {children}
@@ -181,18 +176,97 @@ const Section = ({ title, children }) => (
 );
 
 /* =========================
+   DATOS: MÉTODOS DE DETECCIÓN
+========================= */
+const detectionMethods = [
+  {
+    n: "01",
+    title: "Tránsito",
+    desc: "Se mide la luz de una estrella en el tiempo. Cuando un planeta pasa frente a ella, su brillo cae ligeramente y de forma periódica.",
+  },
+  {
+    n: "02",
+    title: "Velocidad radial",
+    desc: "La gravedad del planeta hace que la estrella 'se tambalee'. Ese bamboleo se detecta como un corrimiento Doppler en su espectro de luz.",
+  },
+  {
+    n: "03",
+    title: "Imagen directa",
+    desc: "En casos excepcionales, telescopios muy potentes bloquean la luz de la estrella y capturan el punto de luz del planeta directamente.",
+  },
+];
+
+/* =========================
+   DATOS: PILARES DE LA ASTROBIOLOGÍA
+========================= */
+const pillars = [
+  {
+    n: 1,
+    title: "Origen de la vida",
+    desc: "Estudia cómo la química pudo organizarse en sistemas capaces de replicarse, usando la Tierra primitiva como caso de estudio.",
+  },
+  {
+    n: 2,
+    title: "Límites de la vida (extremófilos)",
+    desc: "Organismos terrestres que sobreviven en condiciones extremas — calor, frío, radiación, ausencia de luz — amplían lo que consideramos 'habitable'.",
+  },
+  {
+    n: 3,
+    title: "Detección de exoplanetas",
+    desc: "Identifica mundos fuera del sistema solar y caracteriza sus condiciones físicas: tamaño, órbita, temperatura, composición atmosférica.",
+  },
+  {
+    n: 4,
+    title: "Búsqueda de biofirmas",
+    desc: "Analiza la luz que atraviesa o se refleja en una atmósfera exoplanetaria buscando huellas químicas asociadas a procesos biológicos.",
+  },
+];
+
+/* =========================
+   STEP ITEM (numerado, animado)
+========================= */
+const StepItem = ({ n, title, desc }) => (
+  <motion.div
+    variants={stepVariant}
+    style={{ display: "flex", alignItems: "flex-start", gap: 14 }}
+  >
+    <div
+      style={{
+        width: 30,
+        height: 30,
+        borderRadius: "50%",
+        background: "rgba(90,209,201,0.1)",
+        border: `1px solid ${ACCENT}`,
+        color: ACCENT,
+        fontSize: 12,
+        fontFamily: MONO,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontWeight: 700,
+        flexShrink: 0,
+        marginTop: 2,
+      }}
+    >
+      {n}
+    </div>
+    <div style={{ flex: 1 }}>
+      <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 5, color: "#fff" }}>
+        {title}
+      </div>
+      <div style={{ lineHeight: 1.65, color: "rgba(255,255,255,0.6)", fontSize: 14 }}>
+        {desc}
+      </div>
+    </div>
+  </motion.div>
+);
+
+/* =========================
    MAIN
 ========================= */
-const WikiModel = () => {
+const HowItWorks = () => {
   const screens = useBreakpoint();
   const isMobile = !screens.md;
-
-  const textStyle = {
-    textAlign: "justify",
-    lineHeight: 1.7,
-    color: "#333",
-    marginTop: 30,
-  };
 
   return (
     <Card
@@ -200,144 +274,294 @@ const WikiModel = () => {
         width: "100%",
         maxWidth: 950,
         margin: "0 auto",
-        borderRadius: 18,
-        border: "1px solid rgba(0,0,0,0.08)",
+        borderRadius: 4,
+        background: "linear-gradient(160deg, rgba(8,11,24,0.85), rgba(4,6,14,0.92))",
+        border: "1px solid rgba(90,209,201,0.15)",
+        boxShadow: "0 20px 50px rgba(0,0,0,0.45)",
       }}
       styles={{
-        body: { padding: isMobile ? 18 : 40 },
+        body: { padding: isMobile ? 20 : 44 },
       }}
     >
-      {/* ================= INTRO ================= */}
-      <Section title="Monitoreo vegetal y teledetección">
-        <Paragraph style={textStyle}>
-          El monitoreo fisiológico de vegetación mediante análisis espectral permite estimar el estado de salud de una planta sin contacto físico, utilizando la interacción entre radiación electromagnética y pigmentos fotosintéticos.
-        </Paragraph>
+      {/* ================= INTRO: ¿QUÉ ES LA ASTROBIOLOGÍA? ================= */}
+      <Section eyebrow="Marco teórico" title="¿Qué es la astrobiología?">
+        <BodyText>
+          La astrobiología es el campo científico que estudia el origen, la
+          evolución, la distribución y el futuro de la vida — tanto en la
+          Tierra como en el resto del universo. Combina biología, química,
+          geología, física y astronomía para responder una pregunta central:
+          <Text strong style={{ color: "#fff" }}> ¿estamos solos?</Text>
+        </BodyText>
 
-        <Card style={{ marginTop: 18, borderRadius: 12, background: "#fafafa" }}>
-          <Text strong>Idea clave</Text>
-          <Paragraph style={{ marginTop: 6, marginBottom: 0 }}>
-            La salud vegetal puede inferirse a partir de patrones de absorción y reflectancia de luz en distintas longitudes de onda.
-          </Paragraph>
-        </Card>
-
-
+        <HudPanel style={{ marginTop: 18 }}>
+          <HudLabel>Idea clave</HudLabel>
+          <BodyText style={{ color: "rgba(255,255,255,0.75)" }}>
+            No buscamos vida idéntica a la terrestre, sino las condiciones
+            físicas y químicas que la hacen posible: agua líquida, una fuente
+            de energía estable y los elementos básicos de la química
+            orgánica (carbono, hidrógeno, oxígeno, nitrógeno, fósforo y azufre).
+          </BodyText>
+        </HudPanel>
       </Section>
 
-      {/* ================= CLOROFILA ================= */}
-      <Section title="Clorofila y espectro de absorción">
-        <Paragraph style={textStyle}>
-          La clorofila regula la absorción de energía lumínica necesaria para la fotosíntesis, con comportamiento espectral diferenciado.
-        </Paragraph>
-
-        <Card style={{ marginTop: 16, borderRadius: 12 }}>
-
-          <Text strong>Espectro funcional</Text>
-          <motion.div variants={imageVariant} initial="hidden" whileInView="show" viewport={{ once: true }}>
-            <div style={{ marginTop: 24 }}>
-              <img src={absorbancia} alt="Absorción de luz por clorofila" style={{ width: "100%", borderRadius: 12 }} />
-            </div>
-          </motion.div>
-          <div style={{ marginTop: 10 }}>
-            <Text>• Clorofila A → máxima eficiencia en azul y rojo</Text><br />
-            <Text>• Clorofila B → amplía absorción en región azul-verde</Text>
-          </div>
-        </Card>
-
-        <Card style={{ marginTop: 14, borderRadius: 12, background: "#f7f7f7" }}>
-          <Text>
-            La reflectancia en verde se incrementa debido a la menor absorción en esa banda, generando la percepción visual característica de las hojas.
-          </Text>
-        </Card>
-      </Section>
-
-      {/* ================= NDVI ================= */}
-      <Section title="NDVI: índice de vegetación">
-        <Paragraph style={textStyle}>
-          El NDVI es un índice espectral utilizado en teledetección para estimar biomasa y vigor vegetal a partir de bandas roja e infrarroja cercana.
-        </Paragraph>
-
-        <div style={{ marginTop: 30 }}>
-         <MathBlock formula={"NDVI = \\frac{NIR - RED}{NIR + RED}"} />
+      {/* ================= 4 PILARES ================= */}
+      <Section title="Los cuatro pilares de la disciplina">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+            gap: 14,
+          }}
+        >
+          {pillars.map((p) => (
+            <HudPanel key={p.n}>
+              <Text
+                style={{
+                  fontFamily: MONO,
+                  color: ACCENT,
+                  fontSize: 11,
+                  letterSpacing: 1,
+                }}
+              >
+                PILAR {String(p.n).padStart(2, "0")}
+              </Text>
+              <div style={{ color: "#fff", fontWeight: 600, fontSize: 15, margin: "6px 0" }}>
+                {p.title}
+              </div>
+              <Text style={{ color: "rgba(255,255,255,0.55)", fontSize: 13.5, lineHeight: 1.6 }}>
+                {p.desc}
+              </Text>
+            </HudPanel>
+          ))}
         </div>
+      </Section>
 
-        <Card style={{ marginTop: 18, borderRadius: 12 }}>
-          <Text strong>Interpretación física</Text>
-          <div style={{ marginTop: 10 }}>
-            <Text>• Valores altos → vegetación sana y activa</Text><br />
-            <Text>• Valores bajos → estrés hídrico o degradación</Text>
-          </div>
-        </Card>
+      {/* ================= EXTREMÓFILOS ================= */}
+      <Section eyebrow="Vida en los límites" title="Extremófilos: redefiniendo lo habitable">
+        <BodyText>
+          En la Tierra existen organismos que prosperan en condiciones que
+          alguna vez se creyeron incompatibles con la vida: fuentes
+          hidrotermales a más de 100 °C, lagos hipersalinos, hielo antártico
+          o ambientes con radiación intensa. Estos extremófilos son la
+          principal evidencia de que la "zona habitable" puede ser mucho
+          más amplia de lo que imaginamos.
+        </BodyText>
 
         <motion.div variants={imageVariant} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <div style={{ marginTop: 24 }}>
-            <img src={arbol} alt="NDVI conceptual" style={{ width: "100%", borderRadius: 12 }} />
+          <div style={{ marginTop: 18 }}>
+            <img
+              src={arbolVidaIMG}
+              alt="Diversidad de extremófilos en distintos ambientes terrestres"
+              style={{ width: "100%", borderRadius: 4, border: "1px solid rgba(90,209,201,0.15)" }}
+            />
+            <Text
+              style={{
+                display: "block",
+                marginTop: 8,
+                fontSize: 11.5,
+                color: "rgba(255,255,255,0.4)",
+                fontFamily: MONO,
+                textAlign: "center",
+              }}
+            >
+              FIG. 01 — Organismos extremófilos: termófilos, halófilos y psicrófilos
+            </Text>
           </div>
         </motion.div>
       </Section>
 
-      {/* ================= MODEL ================= */}
-      <Section title="Modelo basado en RGB">
-        <Paragraph style={textStyle}>
-          Debido a la ausencia de sensores multiespectrales, se emplea una aproximación basada en espacio RGB como estimador indirecto de actividad fotosintética.
-        </Paragraph>
+      {/* ================= DETECCIÓN DE EXOPLANETAS ================= */}
+      <Section eyebrow="Caza de mundos" title="¿Cómo se detecta un exoplaneta?">
+        <BodyText>
+          Los exoplanetas están demasiado lejos y son demasiado tenues para
+          fotografiarse directamente en la mayoría de los casos. En su lugar,
+          se infieren observando cómo afectan a su estrella anfitriona.
+        </BodyText>
 
-        <div style={{ marginTop: 30 }}>
-          <MathBlock formula={"ICV \\; \\approx \\; ExG = \\frac{2G - R - B}{R + G + B}"} />
-        </div>
-
-        <Card style={{ marginTop: 18, borderRadius: 12 }}>
-          <Text strong>Significado del modelo</Text>
-          <div style={{ marginTop: 10 }}>
-            <Text>• R, G, B → componentes del color digital</Text><br />
-            <Text>• ExG → énfasis del canal verde normalizado</Text>
+        <motion.div variants={imageVariant} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <div style={{ marginTop: 18 }}>
+            <img
+              src={transitoIMG}
+              alt="Diagrama del método de tránsito: curva de luz de la estrella"
+              style={{ width: "100%", borderRadius: 4, border: "1px solid rgba(90,209,201,0.15)" }}
+            />
+            <Text
+              style={{
+                display: "block",
+                marginTop: 8,
+                fontSize: 11.5,
+                color: "rgba(255,255,255,0.4)",
+                fontFamily: MONO,
+                textAlign: "center",
+              }}
+            >
+              FIG. 02 — Método de tránsito: la caída de brillo revela tamaño y periodo orbital
+            </Text>
           </div>
-        </Card>
-      </Section>
-
-      {/* ================= STEPPER ANIMADO ================= */}
-      <Section title="Uso del sistema de análisis">
-        <Paragraph style={textStyle}>
-          El sistema opera como un flujo interactivo de adquisición y análisis de color sobre imágenes de vegetación.
-        </Paragraph>
+        </motion.div>
 
         <motion.div
           variants={stepContainer}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          style={{
-            marginTop: 24,
-            display: "flex",
-            flexDirection: "column",
-            gap: 34,
-          }}
+          style={{ marginTop: 26, display: "flex", flexDirection: "column", gap: 24 }}
         >
-          {steps.map((step) => (
-            <StepItem key={step.n} step={step} />
+          {detectionMethods.map((m) => (
+            <StepItem key={m.n} n={m.n} title={m.title} desc={m.desc} />
           ))}
         </motion.div>
       </Section>
 
-      {/* ================= Nota tecnica ================= */}
-      <Section title="Consideraciones">
+      {/* ================= ZONA HABITABLE ================= */}
+      <Section eyebrow="La región Goldilocks" title="Zona habitable">
+        <BodyText>
+          Es el rango de distancias orbitales alrededor de una estrella donde
+          la temperatura de equilibrio permite que el agua exista en estado
+          líquido sobre la superficie de un planeta rocoso — ni tan cerca que
+          se evapore, ni tan lejos que se congele.
+        </BodyText>
 
-        <Card style={{ marginTop: 18, borderRadius: 12 }}>
-          <Text strong>Nota técnica</Text>
-          <Paragraph style={{ ...textStyle, marginTop: 8 }}>
-            El modo multipunto reduce la varianza espacial del color, estabilizando la estimación del estado general de la hoja.
-            El modo de punto único es más sensible a variaciones locales.
-          </Paragraph>
-        </Card>
-        <Card style={{ marginTop: 18, borderRadius: 12 }}>
-          <div style={{ marginTop: 14 }}>
-            <Text type="secondary" style={{ fontSize: 12 }}>
-              Este sistema representa una estimación visual basada en RGB. No sustituye análisis espectrales ni diagnóstico agronómico profesional.
+        <motion.div variants={imageVariant} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <div style={{ marginTop: 18 }}>
+            <img
+              src={zonaHabitableIMG}
+              alt="Diagrama de la zona habitable alrededor de distintos tipos de estrella"
+              style={{ width: "100%", borderRadius: 4, border: "1px solid rgba(90,209,201,0.15)" }}
+            />
+            <Text
+              style={{
+                display: "block",
+                marginTop: 8,
+                fontSize: 11.5,
+                color: "rgba(255,255,255,0.4)",
+                fontFamily: MONO,
+                textAlign: "center",
+              }}
+            >
+              FIG. 03 — La zona habitable se desplaza según el tipo y brillo de la estrella
             </Text>
           </div>
-        </Card>
+        </motion.div>
+
+        <HudPanel style={{ marginTop: 18 }}>
+          <HudLabel>Dato relevante para el rally</HudLabel>
+          <BodyText style={{ color: "rgba(255,255,255,0.75)" }}>
+            Las estrellas enana roja (como TRAPPIST-1 y Proxima Centauri) son
+            más frías que el Sol, así que su zona habitable está mucho más
+            cerca de la estrella — por eso esos exoplanetas tienen años tan
+            cortos, de pocos días terrestres.
+          </BodyText>
+        </HudPanel>
+      </Section>
+
+      {/* ================= BIOFIRMAS ================= */}
+      <Section eyebrow="Buscando huellas de vida" title="¿Qué es una biofirma?">
+        <BodyText>
+          Una biofirma es cualquier sustancia, patrón o señal que pueda
+          interpretarse como evidencia de actividad biológica pasada o
+          presente. En exoplanetas, se buscan principalmente en la
+          composición de su atmósfera.
+        </BodyText>
+
+        <motion.div variants={imageVariant} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <div style={{ marginTop: 18 }}>
+            <img
+              src={espectroIMG}
+              alt="Espectro de absorción atmosférica mostrando líneas de gases biofirma"
+              style={{ width: "100%", borderRadius: 4, border: "1px solid rgba(90,209,201,0.15)" }}
+            />
+            <Text
+              style={{
+                display: "block",
+                marginTop: 8,
+                fontSize: 11.5,
+                color: "rgba(255,255,255,0.4)",
+                fontFamily: MONO,
+                textAlign: "center",
+              }}
+            >
+              FIG. 04 — Espectroscopía atmosférica: cada gas deja una "huella digital" en la luz
+            </Text>
+          </div>
+        </motion.div>
+
+        <div style={{ marginTop: 22 }}>
+          <MathBlock formula={"T_{eq} \\approx T_{\\star}\\sqrt{\\dfrac{R_{\\star}}{2a}}\\,(1-A)^{1/4}"} />
+        </div>
+        <Text
+          style={{
+            display: "block",
+            marginTop: 8,
+            fontSize: 12,
+            color: "rgba(255,255,255,0.4)",
+            textAlign: "center",
+          }}
+        >
+          Temperatura de equilibrio: relaciona la temperatura estelar (T★), el radio
+          estelar (R★), la distancia orbital (a) y el albedo del planeta (A).
+        </Text>
+
+        <HudPanel style={{ marginTop: 18 }}>
+          <HudLabel>Gases biofirma comunes</HudLabel>
+          <BodyText style={{ color: "rgba(255,255,255,0.75)" }}>
+            Oxígeno (O₂) y ozono (O₃) en combinación con metano (CH₄) son
+            interesantes porque, en la Tierra, su coexistencia depende de
+            que algo los esté regenerando constantemente — en nuestro caso,
+            la fotosíntesis.
+          </BodyText>
+        </HudPanel>
+      </Section>
+
+      {/* ================= CONEXIÓN CON EL RALLY ================= */}
+      <Section eyebrow="De la teoría a la misión" title="Los 5 mundos del rally">
+        <BodyText>
+          Cada estación del Nexo representa un exoplaneta real o un análogo
+          basado en datos científicos actuales. La "habitabilidad" que verás
+          en cada ficha es una estimación didáctica que combina los
+          conceptos anteriores: distancia a su estrella, tipo estelar,
+          temperatura y evidencia (o ausencia) de agua.
+        </BodyText>
+
+        <HudPanel style={{ marginTop: 18 }}>
+          <HudLabel>Cómo leer cada ficha</HudLabel>
+          <BodyText style={{ color: "rgba(255,255,255,0.75)" }}>
+            Al escanear cada estación con el AR, vincula lo que acabas de leer
+            aquí con datos concretos: tipo de estrella, zona habitable,
+            temperatura estimada y la posible química de su atmósfera.
+          </BodyText>
+        </HudPanel>
+      </Section>
+
+      {/* ================= CONSIDERACIONES ================= */}
+      <Section eyebrow="Límites del modelo" title="Consideraciones finales">
+        <HudPanel>
+          <HudLabel>Nota técnica</HudLabel>
+          <BodyText style={{ color: "rgba(255,255,255,0.75)" }}>
+            La existencia de condiciones favorables no garantiza la presencia
+            de vida — solo indica que, según lo que sabemos hoy, no la
+            descarta. La astrobiología trabaja con probabilidades e
+            inferencias, no con certezas.
+          </BodyText>
+        </HudPanel>
+
+        <HudPanel style={{ marginTop: 14 }}>
+          <Text
+            style={{
+              fontSize: 12,
+              color: "rgba(255,255,255,0.4)",
+              lineHeight: 1.6,
+            }}
+          >
+            Los datos de los exoplanetas presentados están basados en
+            observaciones reales (NASA Exoplanet Archive, ESA), aunque los
+            organismos dominantes de cada estación son representaciones
+            didácticas y especulativas con fines educativos.
+          </Text>
+        </HudPanel>
       </Section>
     </Card>
   );
 };
 
-export default WikiModel;
+export default HowItWorks;

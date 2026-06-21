@@ -1,140 +1,274 @@
 import React from "react";
-import { Layout } from "antd";
+import { Layout, Typography } from "antd";
 import Navbar from "../components/layout/Navbar";
 import { useNavigate } from "react-router-dom";
-
 import { motion } from "framer-motion";
 import { usePageLoader } from "../hooks/usePageLoader";
 
+// Assets
 import logo from "../assets/Logo.png";
 import letras from "../assets/Singularity.png";
-import hoja from "../assets/cardSingularity.webp";
-
 import SvgComponent from "../assets/textura.jsx";
-import SingularityCard from "../components/ui/Cards/Singularity";
+
+// Componentes
+import CollectiveCard from "../components/ui/Cards/CollectiveCard";
 import Loader from "../components/layout/loader/Loader.jsx";
 
+const { Title, Paragraph, Text } = Typography;
+
+import almacaninaIMG from "../assets/cards/almacanina.webp";
+import singularityIMG from "../assets/cards/singularity.webp";
+import imjuIMG from "../assets/cards/imju.webp";
+import acompañamenteIMG from "../assets/cards/acompañamente.webp";
+
+const ACCENT = "#5ad1c9";
+const MONO = "'JetBrains Mono', 'Courier New', monospace";
+
 /* =========================
-   BACKGROUND
+   DATOS DE LOS COLECTIVOS
+========================= */
+const collectivesData = [
+  {
+    id: "singularity",
+    title: "Singularity",
+    image: singularityIMG,
+    description:
+      "Colectivo de ciencia abierta y software libre. Parte del movimiento global DIYbio y la DIYbiosphere. Creamos tecnología accesible para monitorear y entender nuestro entorno.",
+    website: "https://singularitymx.org/",
+    social: [
+      { label: "Instagram", url: "https://instagram.com/singularity.open" },
+      { label: "GitHub", url: "https://github.com/Singularity-MX" },
+    ],
+  },
+  {
+    id: "almacanina",
+    title: "Alma Canina",
+    image: almacaninaIMG,
+    description:
+      "Organización dedicada al bienestar de perros en situación de calle mediante campañas de adopción, recolección de donativos, esterilizaciones y actividades de apoyo en colaboración con albergues locales.",
+    website: "https://www.instagram.com/almacanina.leon",
+    social: [
+      { label: "Instagram", url: "https://www.instagram.com/almacanina.leon" },
+    ],
+  },
+  {
+    id: "acompanamente",
+    title: "Acompaña Mente",
+    image: acompañamenteIMG,
+    description:
+      "Iniciativa enfocada en la promoción de la salud mental mediante talleres, pláticas y actividades formativas que fomentan el bienestar emocional, el autoconocimiento y el desarrollo personal.",
+    website: "#",
+    social: [],
+  },
+  {
+    id: "imju",
+    title: "IMJU León",
+    image: imjuIMG,
+    description:
+      "Organismo que impulsa el desarrollo integral de las juventudes mediante programas, actividades y oportunidades de participación enfocadas en educación, liderazgo, emprendimiento y bienestar social.",
+    website: "http://leonjoven.gob.mx/",
+    social: [
+      { label: "Facebook", url: "https://www.facebook.com/IMJULeon" },
+      { label: "Instagram", url: "https://www.instagram.com/imjuleon/" },
+    ],
+  },
+];
+
+/* =========================
+   BACKGROUND — mismo sistema que Home
 ========================= */
 const Background = () => (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      zIndex: 0,
+      pointerEvents: "none",
+      overflow: "hidden",
+      background: "#04060e",
+    }}
+  >
+    <SvgComponent
+      preserveAspectRatio="xMidYMid slice"
+      style={{
+        width: "100vw",
+        height: "100dvh",
+        opacity: 0.12,
+      }}
+    />
     <div
-        style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 0,
-            pointerEvents: "none",
-            overflow: "hidden",
-        }}
-    >
-        <SvgComponent
-            preserveAspectRatio="xMidYMid slice"
-            style={{
-                width: "100vw",
-                height: "100dvh",
-                opacity: 0.1,
-            }}
-        />
-    </div>
+      style={{
+        position: "absolute",
+        top: "-10%",
+        left: "-15%",
+        width: "60vw",
+        height: "60vw",
+        background:
+          "radial-gradient(circle, rgba(90,209,201,0.08) 0%, transparent 70%)",
+      }}
+    />
+  </div>
 );
 
 /* =========================
    PAGE
 ========================= */
 const About = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const loading = usePageLoader([]);
 
-    /* 🔥 HOOK LOADER (REEMPLAZA useState + useEffect) */
-    const loading = usePageLoader([]);
+  const items = [
+    { key: "", label: "Inicio" },
+    { key: "information", label: "¿Cómo funciona?" },
+    { key: "scan", label: "Escáner" },
+    { key: "about", label: "Sobre nosotros" },
+  ];
 
-    const items = [
-        { key: "", label: "Inicio" },
-        { key: "information", label: "¿Cómo funciona?" },
-        { key: "scan", label: "Escáner" },
-        { key: "about", label: "Sobre nosotros" },
-    ];
+  const handleNavigate = (key) => {
+    navigate(`/${key === "home" ? "" : key}`);
+  };
 
-    const handleNavigate = (key) => {
-        navigate(`/${key === "home" ? "" : key}`);
-    };
+  return (
+    <Layout
+      style={{
+        minHeight: "100dvh",
+        background: "#04060e",
+      }}
+    >
+      <Background />
 
-    return (
-        <Layout
-            style={{
-                minHeight: "100dvh",
-                background: "#fafafa",
-                overflow: "hidden",
-            }}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          minHeight: "100dvh",
+          display: "flex",
+          flexDirection: "column",
+          width: "100vw",
+          margin: "0px -1px ",
+          padding: 0,
+        }}
+      >
+        <Navbar
+          items={items}
+          onNavigate={handleNavigate}
+          initialSelectedKey="about"
+          logoIcon={<img src={logo} alt="logo" style={{ height: 40 }} />}
+          logoText={<img src={letras} alt="text" style={{ height: 20 }} />}
+        />
+
+        <main
+          style={{
+            height: "calc(100dvh - 64px)",
+            overflowY: "auto",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: "32px 20px 64px 20px",
+          }}
         >
-            <Background />
-
-            <div
-                style={{
-                    position: "relative",
-                    zIndex: 1,
-                    minHeight: "100dvh",
-                    display: "flex",
-                    flexDirection: "column",
-                }}
+          {loading ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              style={{ margin: "auto" }}
             >
-                <Navbar
-                    items={items}
-                    onNavigate={handleNavigate}
-                    initialSelectedKey="about"
-                    logoIcon={<img src={logo} alt="logo" style={{ height: 40 }} />}
-                    logoText={<img src={letras} alt="text" style={{ height: 20 }} />}
-                />
-
-                <main
-                    style={{
-                        height: "calc(100dvh - 64px)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        padding: "16px 24px",
-                    }}
+              <Loader size={60} color={ACCENT} />
+            </motion.div>
+          ) : (
+            <div style={{ width: "100%", maxWidth: 900 }}>
+              {/* --- SECCIÓN DE BIENVENIDA --- */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                style={{
+                  textAlign: "center",
+                  marginBottom: 40,
+                  padding: "0 12px",
+                }}
+              >
+                <Text
+                  style={{
+                    fontFamily: MONO,
+                    textTransform: "uppercase",
+                    letterSpacing: 2.5,
+                    color: ACCENT,
+                    fontSize: 12,
+                    fontWeight: 600,
+                  }}
                 >
-                    {loading ? (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <Loader size={60} color="#000" />
-                        </motion.div>
-                    ) : (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <SingularityCard
-                                image={hoja}
-                                description="Colectivo de ciencia abierta y software libre. Parte del movimiento global DIYbio y la DIYbiosphere. Creamos tecnología accesible para monitorear y entender nuestro entorno."
-                                social={[
-                                    {
-                                        label: "Instagram",
-                                        url: "https://instagram.com/singularity.open",
-                                    },
-                                    {
-                                        label: "GitHub",
-                                        url: "https://github.com/Singularity-MX",
-                                    },
-                                    {
-                                        label: "Facebook",
-                                        url: "https://www.facebook.com/Singularity.py",
-                                    },
-                                ]}
-                                onSocialClick={(s) =>
-                                    window.open(s.url, "_blank")
-                                }
-                            />
-                        </motion.div>
-                    )}
-                </main>
+                  SOBRE NOSOTROS
+                </Text>
+
+                <Title
+                  level={1}
+                  style={{
+                    color: "#fff",
+                    fontWeight: 800,
+                    letterSpacing: "-1px",
+                    margin: "8px 0 14px 0",
+                    fontSize: "clamp(28px, 6vw, 44px)",
+                    textShadow: "0 0 30px rgba(90,209,201,0.2)",
+                  }}
+                >
+                  Nexo Colectivo
+                </Title>
+
+                <Paragraph
+                  style={{
+                    fontSize: "1.05rem",
+                    color: "rgba(255,255,255,0.85)",
+                    maxWidth: 560,
+                    margin: "0 auto 6px auto",
+                    lineHeight: 1.6,
+                    fontWeight: 500,
+                  }}
+                >
+                  Gracias por ser parte de esta experiencia. 🚀
+                </Paragraph>
+
+                <Paragraph
+                  style={{
+                    fontSize: "0.95rem",
+                    color: "rgba(255,255,255,0.5)",
+                    maxWidth: 600,
+                    margin: "0 auto",
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Este Nexo nació de la colaboración con cuatro colectivos que
+                  comparten algo en común: divulgar, acompañar y construir
+                  comunidad. Conócelos un poco más abajo.
+                </Paragraph>
+              </motion.div>
+
+              {/* --- RENDERIZADO DE CARDS --- */}
+              {collectivesData.map((collective, index) => (
+                <motion.div
+                  key={collective.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                >
+                  <CollectiveCard
+                    title={collective.title}
+                    image={collective.image}
+                    description={collective.description}
+                    website={collective.website}
+                    social={collective.social}
+                    onSocialClick={(s) => window.open(s.url, "_blank")}
+                  />
+                </motion.div>
+              ))}
             </div>
-        </Layout>
-    );
+          )}
+        </main>
+      </div>
+    </Layout>
+  );
 };
 
 export default About;
