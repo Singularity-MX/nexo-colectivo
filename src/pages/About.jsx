@@ -21,6 +21,9 @@ import singularityIMG from "../assets/cards/singularity.webp";
 import imjuIMG from "../assets/cards/imju.webp";
 import acompañamenteIMG from "../assets/cards/acompañamente.webp";
 
+const ACCENT = "#5ad1c9";
+const MONO = "'JetBrains Mono', 'Courier New', monospace";
+
 /* =========================
    DATOS DE LOS COLECTIVOS
 ========================= */
@@ -72,7 +75,7 @@ const collectivesData = [
 ];
 
 /* =========================
-   BACKGROUND
+   BACKGROUND — mismo sistema que Home
 ========================= */
 const Background = () => (
   <div
@@ -82,7 +85,7 @@ const Background = () => (
       zIndex: 0,
       pointerEvents: "none",
       overflow: "hidden",
-      background: "#fafafa",
+      background: "#04060e",
     }}
   >
     <SvgComponent
@@ -90,7 +93,18 @@ const Background = () => (
       style={{
         width: "100vw",
         height: "100dvh",
-        opacity: 0.15,
+        opacity: 0.12,
+      }}
+    />
+    <div
+      style={{
+        position: "absolute",
+        top: "-10%",
+        left: "-15%",
+        width: "60vw",
+        height: "60vw",
+        background:
+          "radial-gradient(circle, rgba(90,209,201,0.08) 0%, transparent 70%)",
       }}
     />
   </div>
@@ -118,7 +132,7 @@ const About = () => {
     <Layout
       style={{
         minHeight: "100dvh",
-        background: "transparent",
+        background: "#04060e",
       }}
     >
       <Background />
@@ -160,18 +174,11 @@ const About = () => {
               transition={{ duration: 0.3 }}
               style={{ margin: "auto" }}
             >
-              <Loader size={60} color="#000" />
+              <Loader size={60} color={ACCENT} />
             </motion.div>
           ) : (
             <div style={{ width: "100%", maxWidth: 900 }}>
               {/* --- SECCIÓN DE BIENVENIDA --- */}
-              {/*
-                Antes: un título grande seguido de un párrafo largo y formal,
-                lo que se sentía como un golpe de información.
-                Ahora: eyebrow corto -> título -> frase breve y cálida que
-                agradece -> y solo después el contexto, en una línea aparte.
-                Esto crea una jerarquía de lectura en 3 pasos en vez de 2 bloques.
-              */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -184,24 +191,26 @@ const About = () => {
               >
                 <Text
                   style={{
+                    fontFamily: MONO,
                     textTransform: "uppercase",
                     letterSpacing: 2.5,
-                    color: "#999",
+                    color: ACCENT,
                     fontSize: 12,
                     fontWeight: 600,
                   }}
                 >
-                  Sobre nosotros
+                  SOBRE NOSOTROS
                 </Text>
 
                 <Title
                   level={1}
                   style={{
-                    color: "#111",
+                    color: "#fff",
                     fontWeight: 800,
                     letterSpacing: "-1px",
                     margin: "8px 0 14px 0",
                     fontSize: "clamp(28px, 6vw, 44px)",
+                    textShadow: "0 0 30px rgba(90,209,201,0.2)",
                   }}
                 >
                   Nexo Colectivo
@@ -210,7 +219,7 @@ const About = () => {
                 <Paragraph
                   style={{
                     fontSize: "1.05rem",
-                    color: "#333",
+                    color: "rgba(255,255,255,0.85)",
                     maxWidth: 560,
                     margin: "0 auto 6px auto",
                     lineHeight: 1.6,
@@ -223,7 +232,7 @@ const About = () => {
                 <Paragraph
                   style={{
                     fontSize: "0.95rem",
-                    color: "#777",
+                    color: "rgba(255,255,255,0.5)",
                     maxWidth: 600,
                     margin: "0 auto",
                     lineHeight: 1.6,

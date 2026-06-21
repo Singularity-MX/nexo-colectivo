@@ -119,3 +119,39 @@ code {
 * {
   -webkit-tap-highlight-color: transparent;
 }
+
+/* animations.css - Optimizaciones para animaciones fluidas */
+
+/* Forzar aceleración por hardware */
+.motion-div,
+[class*="motion"] {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Reducir animaciones en dispositivos de gama baja */
+@media (max-width: 768px) {
+  /* Simplificar animaciones */
+  .fade-in-mobile {
+    animation: simpleFadeIn 0.3s ease-out !important;
+  }
+  
+  /* Eliminar animaciones pesadas */
+  .no-animation-mobile {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@keyframes simpleFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Prevenir parpadeos */
+.framer-motion-container {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}

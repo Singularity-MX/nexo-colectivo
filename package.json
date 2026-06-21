@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -14,10 +17,13 @@
     "antd": "^6.3.6",
     "framer-motion": "^12.38.0",
     "katex": "^0.16.45",
+    "mind-ar": "^1.2.5",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-katex": "^3.1.0",
-    "react-router-dom": "^7.14.1"
+    "react-router-dom": "^7.14.1",
+    "sweetalert2": "^11.26.25",
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
