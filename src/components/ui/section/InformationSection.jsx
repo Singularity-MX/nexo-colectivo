@@ -5,10 +5,10 @@ import katex from "katex";
 
 // === IMÁGENES ===
 
-import zonaHabitableIMG from "../../../assets/imgs/arbol.png";
-import transitoIMG from "../../../assets/imgs/arbol.png";
-import espectroIMG from "../../../assets/imgs/arbol.png";
-import arbolVidaIMG from "../../../assets/imgs/arbol.png";
+import zonaHabitableIMG from "../../../assets/imgs/habitableZone.webp";
+import transitoIMG from "../../../assets/imgs/transit.webp";
+import espectroIMG from "../../../assets/imgs/espectro.webp";
+import arbolVidaIMG from "../../../assets/imgs/extremofilos.webp";
 
 const { Title, Text, Paragraph } = Typography;
 const { useBreakpoint } = Grid;
@@ -176,7 +176,7 @@ const Section = ({ eyebrow, title, children }) => (
 );
 
 /* =========================
-   DATOS: MÉTODOS DE DETECCIÓN
+   MÉTODOS DE DETECCIÓN
 ========================= */
 const detectionMethods = [
   {
@@ -197,7 +197,7 @@ const detectionMethods = [
 ];
 
 /* =========================
-   DATOS: PILARES DE LA ASTROBIOLOGÍA
+   PILARES DE LA ASTROBIOLOGÍA
 ========================= */
 const pillars = [
   {
@@ -223,7 +223,7 @@ const pillars = [
 ];
 
 /* =========================
-   STEP ITEM (numerado, animado)
+   STEP ITEM 
 ========================= */
 const StepItem = ({ n, title, desc }) => (
   <motion.div

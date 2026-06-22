@@ -1,10 +1,8 @@
-# Detectives del Estrés Vegetal v1.0.0
+# Nexo Colectivo v1.0.0
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![Status](https://img.shields.io/badge/status-active-success)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen)
-
-<img src="./src//documents/branding/portada.png" alt="Portada" width="100%"/>
 
 ## Índice
 
@@ -12,253 +10,263 @@
 2. [Objetivo](#objetivo)
 3. [Ficha técnica](#ficha-técnica)
 4. [Fundamento teórico](#fundamento-teórico)
-5. [Pipeline computacional implementado](#pipeline-computacional-implementado)
-6. [Limitaciones del Índice Cromático de Vegetación](#limitaciones-del-índice-cromático-de-vegetación)
+5. [Arquitectura técnica implementada](#arquitectura-técnica-implementada)
+6. [Limitaciones del modelo de habitabilidad](#limitaciones-del-modelo-de-habitabilidad)
 7. [Requisitos](#requisitos)
 8. [Uso de la herramienta](#uso-de-la-herramienta)
-9. [Metodología del taller](#metodología-del-taller)
-10. [Resultados esperados](#resultados-esperados)
-11. [Evidencias](#evidencias)
-12. [Consideraciones](#consideraciones)
-13. [Recursos](#recursos)
-14. [Versionamiento](#versionamiento)
-15. [Contribuciones](#contribuciones)
-16. [Créditos](#créditos)
-17. [Sobre Singularity](#sobre-singularity)
+9. [Las 5 estaciones del rally](#las-5-estaciones-del-rally)
+10. [Metodología del evento](#metodología-del-evento)
+11. [Resultados esperados](#resultados-esperados)
+12. [Evidencias](#evidencias)
+13. [Consideraciones](#consideraciones)
+14. [Recursos](#recursos)
+15. [Versionamiento](#versionamiento)
+16. [Contribuciones](#contribuciones)
+17. [Créditos](#créditos)
+18. [Sobre los colectivos organizadores](#sobre-los-colectivos-organizadores)
 
 ## Descripción
 
-Detectives del Estrés Vegetal es una experiencia formativa interactiva desarrollada por el colectivo Singularity, orientada al análisis del estado de salud de plantas mediante la extracción de valores RGB a partir de imágenes digitales.
+Nexo Colectivo es un encuentro intercolectivo desarrollado bajo el formato de **rally astrobiológico**, orientado a la divulgación de conceptos de astrobiología, exoplanetas y búsqueda de vida mediante una experiencia híbrida que combina estaciones físicas, actividades colaborativas y un escáner de realidad aumentada (AR) basado en reconocimiento de imágenes.
 
-A partir de estos datos, se construyen indicadores numéricos inspirados en técnicas de percepción remota y teledetección, como el Índice de Vegetación de Diferencia Normalizada (NDVI), con el propósito de comprender cómo los sistemas computacionales representan el color como información cuantificable.
+A partir de cinco estaciones, cada una representando un exoplaneta real o un análogo basado en datos científicos actuales, los participantes recorren un recorrido físico mientras desbloquean, mediante su propio dispositivo móvil, fichas científicas interactivas en 3D que describen las condiciones físicas, atmosféricas y la hipotética forma de vida asociada a cada mundo.
 
+El evento es organizado en colaboración con cuatro colectivos de la ciudad de León, Guanajuato, unidos por la divulgación tecnológica, el bienestar social y la ciencia abierta.
 
 ## Objetivo
 
-Que los participantes comprendan cómo un sistema computacional transforma información visual (color) en datos numéricos (RGB), y cómo estos pueden emplearse para inferir el estado de salud vegetal mediante modelos simplificados de análisis.
-
+Que los participantes comprendan, de forma práctica y vivencial, los principios básicos de la astrobiología (zona habitable, métodos de detección de exoplanetas y búsqueda de biofirmas) mediante el recorrido físico de un rally y el uso de un escáner de realidad aumentada que vincula cada estación con su contraparte científica.
 
 ## Ficha técnica
 
-- Nombre: Detectives del Estrés Vegetal  
-- Duración: 1.5 horas (90 minutos)  
-- Lugar: IMJU Parque Hidalgo  
-- Participantes: 45 personas  
-- Modalidad: Taller práctico con apoyo digital  
+- Nombre: Nexo Colectivo · Rally Astrobiológico
+- Fecha: 28 de junio del 2026
+- Hora: 09:00 AM - 12:00 PM
+- Lugar: Universidad CESEE (Industrial Julián de Obregón)
+- Edad recomendada: +12 años
+- Cupo: Limitado
+- Modalidad: Rally físico con apoyo de realidad aumentada (AR) vía dispositivo móvil
 
 ## Fundamento teórico
 
-El taller se basa en la representación digital del color mediante el modelo RGB (Red, Green, Blue), en el cual cada píxel de una imagen es codificado como una tupla de tres componentes numéricos discretos que representan la intensidad de los canales rojo, verde y azul en un rango típico de 0 a 255.
+El rally se sustenta en la **astrobiología**, el campo científico que estudia el origen, la evolución, la distribución y el futuro de la vida tanto en la Tierra como en el resto del universo. Esta disciplina combina biología, química, geología, física y astronomía para abordar una pregunta central: ¿estamos solos?
 
-El espacio de color RGB es ampliamente utilizado en sistemas computacionales debido a su compatibilidad directa con sensores ópticos (cámaras digitales), pantallas y dispositivos de adquisición de imágenes. A diferencia de otros modelos de color perceptuales (como HSV o CIE-Lab), RGB representa de forma directa la composición física de la luz emitida o capturada, lo que lo hace especialmente adecuado para procesos de adquisición y análisis computacional de imágenes sin transformaciones intermedias.
+No se busca vida idéntica a la terrestre, sino las condiciones físicas y químicas que la hacen posible: agua líquida, una fuente de energía estable y los elementos básicos de la química orgánica (carbono, hidrógeno, oxígeno, nitrógeno, fósforo y azufre).
 
-A partir de estos valores se construye un índice simplificado inspirado en técnicas de teledetección vegetal como el NDVI (Normalized Difference Vegetation Index), permitiendo aproximar el estado fisiológico de una hoja mediante relaciones entre canales de color. Este valor simplificado se denomina Índice Cromático de Vegetación (ICV) y se calcula mediante una variante del Excess Green Index (ExG), definida como:
+### Pilares conceptuales abordados
 
-ICV ≈ ExG = (2G - R - B) / (R + G + B)
+1. **Origen de la vida** — cómo la química pudo organizarse en sistemas capaces de replicarse, usando la Tierra primitiva como caso de estudio.
+2. **Límites de la vida (extremófilos)** — organismos terrestres que sobreviven en condiciones extremas (calor, frío, radiación, ausencia de luz), que amplían lo que consideramos "habitable".
+3. **Detección de exoplanetas** — identificación de mundos fuera del sistema solar mediante métodos indirectos, principalmente el **método de tránsito** (caída de brillo de la estrella al pasar el planeta frente a ella) y la **velocidad radial** (bamboleo gravitacional de la estrella).
+4. **Búsqueda de biofirmas** — análisis de la luz que atraviesa o se refleja en una atmósfera exoplanetaria, buscando huellas químicas asociadas a procesos biológicos (por ejemplo, la coexistencia de oxígeno y metano).
+
+### Zona habitable
+
+Es el rango de distancias orbitales alrededor de una estrella donde la temperatura de equilibrio permite que el agua exista en estado líquido sobre la superficie de un planeta rocoso. Esta zona se desplaza según el tipo y brillo de la estrella anfitriona:
+
+T_eq ≈ T★ · √(R★ / 2a) · (1 - A)^(1/4)
 
 donde:
 
--   R: componente rojo del espacio RGB\
--   G: componente verde del espacio RGB\
--   B: componente azul del espacio RGB
+- T★: temperatura de la estrella
+- R★: radio de la estrella
+- a: distancia orbital del planeta
+- A: albedo (reflectividad) del planeta
 
+Las estrellas enana roja (como TRAPPIST-1 y Proxima Centauri) son más frías que el Sol, por lo que su zona habitable está mucho más cerca de la estrella, lo que explica por qué sus exoplanetas tienen años tan cortos, de apenas algunos días terrestres.
 
-Esta expresión constituye una aproximación empírica y pedagógica del Índice de Vegetación de Diferencia Normalizada (NDVI), el cual se define formalmente como:
+### Índice de habitabilidad didáctico
 
-NDVI = (NIR - R) / (NIR + R)
+Para fines del rally, se construye un **índice de habitabilidad simplificado (0-100)** por estación, que combina de forma heurística:
 
-Como se observa, el NDVI incorpora la banda del infrarrojo cercano (NIR, Near-Infrared), la cual es capturada mediante sensores especializados presentes en plataformas satelitales o aerotransportadas. Esta banda es fundamental debido a que la vegetación sana refleja fuertemente la radiación en el espectro infrarrojo cercano, lo cual permite estimar con alta precisión su actividad fotosintética y contenido de biomasa.
+- Distancia orbital relativa a la zona habitable de su estrella
+- Tipo y temperatura estelar
+- Temperatura superficial estimada del planeta
+- Evidencia (observacional o especulativa) de agua líquida
 
-Para fines prácticos de este taller, al no contar con imágenes multiespectrales ni sensores NIR, se elimina la dependencia del infrarrojo cercano (NIR) y se construye una aproximación empírica basada únicamente en el espacio RGB, dando lugar a un índice cromático derivado del Excess Green Index (ExG) con interpretación heurística del vigor vegetal. Esta formulación implica una reducción en la fidelidad espectral respecto a índices multiespectrales como el NDVI, por lo que el Índice Cromático de Vegetación (ICV) debe interpretarse como un descriptor cromático computacional basado en RGB y no como un equivalente físico del NDVI., sino como una simplificación didáctica orientada a la comprensión conceptual de cómo las relaciones entre canales de color pueden utilizarse para inferir patrones de salud vegetal.
+Este índice no corresponde a una métrica científica formal (como el ESI - Earth Similarity Index), sino a una aproximación pedagógica orientada a facilitar la comparación entre estaciones durante el recorrido.
 
+## Arquitectura técnica implementada
 
-## Pipeline computacional implementado
+La experiencia AR se construye sobre el siguiente stack:
 
-El cálculo del ICV se basa en un promedio espacial de píxeles dentro de
-una región de interés.
+- **MindAR** (`mindar-image-three`) — motor de reconocimiento de imágenes (image tracking) basado en visión computacional, utilizado para detectar el marcador físico de cada estación.
+- **Three.js** — renderizado 3D de los modelos planetarios, atmósferas (shaders de Fresnel), capas de nubes y fichas científicas en formato sprite.
+- **React** — interfaz de usuario del escáner (pantalla de briefing previo, HUD de escaneo, controles de inicio/detención).
 
-### 1. Muestreo espacial
+### Pipeline de detección y renderizado
 
-Se utiliza una ventana cuadrada alrededor del punto seleccionado para
-obtener un conjunto de píxeles representativos.
+1. **Captura de imagen objetivo**: cada estación física cuenta con un marcador impreso, previamente compilado a un archivo `.mind`.
+2. **Inicialización de cámara**: solicitud de permisos de `getUserMedia` y arranque del motor MindAR.
+3. **Anclaje por estación**: se crea un `anchor` de MindAR por cada una de las 5 estaciones, asociado a su índice correspondiente dentro del marcador compuesto.
+4. **Estabilización de pose**: se implementa un sistema de suavizado (interpolación lineal para posición, interpolación esférica para rotación) con zona muerta (deadzone), para reducir el jitter natural del tracking por visión computacional.
+5. **Renderizado del planeta**: esfera texturizada con shaders adicionales de atmósfera (efecto Fresnel) y, en algunos casos, capa de nubes independiente con rotación propia.
+6. **Renderizado de la ficha científica**: panel generado dinámicamente sobre un `canvas` 2D (datos del exoplaneta, organismo dominante, índice de habitabilidad), convertido a textura y proyectado como sprite sobre la escena 3D.
 
-### 2. Filtrado por luminancia
+## Limitaciones del modelo de habitabilidad
 
-Se eliminan píxeles con valores extremos de iluminación:
+Debido a la naturaleza didáctica del índice de habitabilidad utilizado en el rally, se identifican las siguientes limitaciones:
 
-L = 0.2126R + 0.7152G + 0.0722B
+- **Ausencia de datos espectroscópicos reales en la mayoría de los casos**: la existencia de atmósfera, agua o composición química de varios de los exoplanetas presentados es, a la fecha, especulativa o basada en evidencia indirecta y aún debatida por la comunidad científica.
+- **El organismo dominante de cada estación es ficticio y especulativo**: representa un ejercicio de imaginación científica (astrobiología especulativa) y no una afirmación sobre la existencia real de vida en dichos exoplanetas.
+- **El índice de habitabilidad no es una métrica científica estandarizada**: combina de forma heurística variables físicas conocidas con fines exclusivamente educativos y de comparación lúdica entre estaciones.
+- **Dependencia de las condiciones de captura del marcador AR**: la calidad del reconocimiento de imagen puede verse afectada por iluminación, ángulo de cámara y calidad de impresión del marcador físico.
 
--   Se descartan valores muy oscuros (\<20)
--   Se descartan valores muy brillantes (\>240)
-
-### 3. Promedio RGB
-
-Se calcula el promedio de los canales RGB válidos:
-
-(R, G, B) = (Σr / N, Σg / N, Σb / N)
-
-### 4. Cálculo del índice
-
-ICV = (2G - R - B) / (R + G + B)
-
-
-## Interpretación del modelo
-
-El índice se fundamenta en la premisa de que la vegetación sana presenta
-una mayor reflectancia en el canal verde, mientras que la absorción en
-los canales rojo y azul es más pronunciada debido a la actividad
-fotosintética de la clorofila.
-
--   Valores positivos altos → vegetación vigorosa\
--   Valores cercanos a cero → estado intermedio\
--   Valores negativos → posible estrés vegetal
-
-### Limitaciones del Índice Cromático de Vegetación
-
-Debido a la naturaleza simplificada del Índice Cromático de Vegetación (ICV), se identifican diversas limitaciones inherentes a su diseño y supuestos. A continuación, se describen las principales:
-
-- **Dependencia del espacio RGB y ausencia de información espectral infrarroja:**  
-  El ICV utiliza exclusivamente los canales rojo y verde del espacio RGB, lo cual implica la ausencia de la banda del infrarrojo cercano (NIR), componente fundamental en índices como el NDVI. Esta limitación reduce significativamente la capacidad del índice para caracterizar procesos fisiológicos reales de la vegetación.
-
-- **Sensibilidad a variaciones de iluminación y condiciones de captura:**  
-  El valor del índice puede verse afectado por cambios en la iluminación ambiental, exposición de la cámara, balance de blancos y calidad del sensor del dispositivo utilizado. Esto introduce variabilidad no asociada al estado real de la planta, sino a condiciones externas de medición.
-
-- **Dependencia del contexto cromático de la muestra:**  
-  Dado que el índice se basa en relaciones entre los canales R y G, su interpretación puede verse sesgada en presencia de hojas con pigmentaciones naturalmente oscuras o con variaciones cromáticas no asociadas a estrés fisiológico.
-
-- **Desviación respecto a interpretaciones biológicas del NDVI:**  
-  Debido a la sustitución del canal NIR por el canal rojo, el comportamiento del ICV no es directamente comparable con el NDVI. En consecuencia, valores numéricos similares no implican equivalencia en términos de salud vegetal.
-
-El ICV es un descriptor cromático computacional derivado de información RGB, no un indicador biológico directo. Su propósito es educativo, exploratorio y de aproximación conceptual al análisis de vegetación mediante visión computacional.
-
+La existencia de condiciones favorables no garantiza la presencia de vida — solo indica que, según lo que sabemos hoy, no la descarta. La astrobiología trabaja con probabilidades e inferencias, no con certezas.
 
 ## Requisitos
 
 ### Tecnológicos
-- Dispositivo móvil con cámara o computadora portátil
+- Dispositivo móvil con cámara y navegador compatible con WebGL
 - Acceso a la aplicación web del proyecto
-- Conexión a internet estable
+- Conexión a internet estable (para la carga inicial de assets 3D y texturas)
+- Buena iluminación ambiental para el correcto funcionamiento del reconocimiento de imagen
 
 ### Material físico
-- Hojas impresas de la bitácora de registro del Índice Cromático de Vegetación
-- Lápices o plumas
-- Hojas de plantas (no vivas, recolectadas previamente)
-- Pizarrón o rotafolio
-- Proyector (opcional, para la fase de demostración grupal)
-
+- Marcadores impresos de cada una de las 5 estaciones (formato `.mind` compilado)
+- Señalética de ruta del rally
+- Material de apoyo para las actividades de referencia de cada estación
+- Bitácora o registro de puntuación por equipo (si se opta por modalidad competitiva)
 
 ## Uso de la herramienta
 
-La siguiente sección describe el procedimiento para utilizar la herramienta desarrollada, disponible en el siguiente enlace:
-
-https://detectives-del-estres-vegetal.vercel.app/
+La siguiente sección describe el procedimiento para utilizar el escáner AR del proyecto:
 
 ### Procedimiento
 
-1. Acceder a la aplicación web desde un dispositivo móvil o computadora portátil.  
-2. Cargar o capturar una imagen de una hoja vegetal.  
-3. Seleccionar un punto representativo dentro de la imagen.  
-4. Obtener los valores correspondientes al modelo RGB (Rojo, Verde, Azul).  
-5. Registrar los valores obtenidos en la bitácora de análisis.  
+1. Acceder a la aplicación web desde un dispositivo móvil.
+2. Navegar a la sección "Escáner" desde el menú principal.
+3. Conceder los permisos de cámara solicitados por el navegador.
+4. Apuntar la cámara al marcador físico de la estación correspondiente.
+5. Esperar la detección y observar el modelo 3D del exoplaneta junto con su ficha científica.
+6. Repetir el proceso en cada una de las 5 estaciones del recorrido.
+
+## Las 5 estaciones del rally
+
+| # | Exoplaneta | Sistema estelar | Distancia | Habitabilidad | Organismo dominante (especulativo) |
+|---|---|---|---|---|---|
+| 1 | Tierra | Sistema Solar | 0 (planeta natal) | 100/100 | Humanos |
+| 2 | TRAPPIST-1e | TRAPPIST-1 | 40 años luz | 80/100 | Hongos bioluminiscentes |
+| 3 | Kepler-452b | Kepler-452 | 1,400 años luz | 75/100 | Gigantópodos |
+| 4 | K2-18b | K2-18 | 124 años luz | 70/100 | Aeromedusas |
+| 5 | Proxima Centauri b | Proxima Centauri | 4.24 años luz | 65/100 | Criaturas reflectantes |
+
+Cada estación cuenta con una actividad de referencia presencial vinculada a un concepto científico específico (por ejemplo, alta gravedad, radiación estelar o ausencia de visión convencional), diseñada para reforzar de forma corporal y lúdica el principio teórico correspondiente.
+
+## Metodología del evento
+
+El recorrido se estructura en formato de circuito: los equipos participantes avanzan por las 5 estaciones en el orden que determine la organización, realizando en cada una:
+
+1. Escaneo AR del marcador y lectura de la ficha científica del exoplaneta.
+2. Actividad física o lúdica de referencia, vinculada al concepto científico de la estación.
+3. Registro de puntuación (si aplica modalidad competitiva tipo "Mundial Interplanetario").
+
+Al finalizar el recorrido de las 5 estaciones, los puntos acumulados por cada equipo se suman para determinar al equipo campeón del evento.
 
 ## Resultados esperados
 
-- Comprensión de la representación digital del color mediante el modelo RGB
-- Interpretación básica de datos numéricos derivados de imágenes
-- Introducción conceptual a índices de vegetación y teledetección
-- Desarrollo de pensamiento analítico aplicado a sistemas naturales
+- Comprensión básica de los principios de habitabilidad planetaria y zona habitable
+- Familiarización con los métodos reales de detección de exoplanetas (tránsito, velocidad radial)
+- Introducción conceptual a la búsqueda de biofirmas atmosféricas
+- Experiencia práctica con tecnología de realidad aumentada aplicada a divulgación científica
+- Fortalecimiento de vínculos intercolectivos mediante una actividad colaborativa multisectorial
 
 ## Evidencias
 
-- Registro fotográfico del taller
-- Tablas de datos RGB e índices calculados
-- Lista de asistencia de participantes
+- Registro fotográfico y audiovisual del evento
+- Capturas de las interacciones con el escáner AR
+- Lista de asistencia de participantes y equipos
 
 ## Consideraciones
 
--   Evitar cualquier daño a vegetación viva durante la recolección de muestras.
--   Garantizar condiciones adecuadas de iluminación para la captura de imágenes, minimizando variaciones experimentales.
--   Verificar previamente la conectividad a internet en caso de dependencia de la herramienta web.
--   La actividad es adaptable a un modo offline mediante el uso de imágenes previamente almacenadas.
+- Garantizar condiciones adecuadas de iluminación en cada estación para el correcto funcionamiento del reconocimiento de imagen AR.
+- Verificar previamente la conectividad a internet en el lugar del evento, dado que la carga inicial de assets 3D depende de esta.
+- Contar con dispositivos de respaldo (tablets o smartphones) en caso de que algún participante no disponga de uno compatible.
+- La actividad es adaptable a un modo de contingencia mediante material impreso de las fichas científicas, en caso de fallos técnicos con el escáner AR.
 
 ## Recursos
-### Presentación PENDIENTE CARGARLA
 
-Se encuentra adjunta en el repositorio en la siguiente ruta:  
-`src/documents/presentation.pdf`
+### Aplicación web
 
-### Lista de asistencia
+Disponible en el siguiente enlace:
 
-Se encuentra adjunta en el repositorio en la siguiente ruta:  
-`src/documents/assistance_list.pdf`
+`https://nexo-colectivo.vercel.app/` *(ajustar según dominio final de despliegue)*
 
-### Fotografías
+### Marcadores AR
 
-Durante el evento se capturarán evidencias fotográficas con fines de documentación y difusión del taller.  
-Estas podrán publicarse en las redes sociales del colectivo.
-
-Adicionalmente, se dispondrá de una carpeta de respaldo accesible en el siguiente enlace:  
-[https://goo.su/rTtYf6d](https://goo.su/rTtYf6d)
-
+Se encuentran adjuntos en el repositorio en la siguiente ruta:
+`public/targets/nexo.mind`
 
 ### Branding del evento
 
-Se encuentra adjunto en el repositorio en la siguiente ruta:  
-`src/documents/branding/`
+Se encuentra adjunto en el repositorio en la siguiente ruta:
+`src/assets/branding/`
 
 Incluye:
 
--   Material para publicación de difusión en Instagram
--   Material para publicación de difusión en Facebook
--   Portada para Eventbrite
--   Ficha técnica del evento
--   Material para difusión en WhatsApp
+- Material para publicación de difusión en Instagram
+- Material para publicación de difusión en Facebook
+- Póster oficial del evento
+- Logotipo de Nexo Colectivo
+
+### Fotografías
+
+Durante el evento se capturarán evidencias fotográficas con fines de documentación y difusión.
+Estas podrán publicarse en las redes sociales de los colectivos organizadores.
 
 ## Versionamiento
 
-Este proyecto utiliza control de versiones basado en Git, con el objetivo de asegurar trazabilidad, reproducibilidad y evolución incremental del sistema y la metodología del taller.
+Este proyecto utiliza control de versiones basado en Git, con el objetivo de asegurar trazabilidad, reproducibilidad y evolución incremental del sistema y la metodología del evento.
 
 El esquema de versionamiento sigue el estándar:
 
 **MAJOR.MINOR.PATCH**
 
--   **MAJOR**: cambios estructurales en la metodología del taller o en la arquitectura del sistema.
--   **MINOR**: incorporación de nuevas funcionalidades o mejoras en el flujo del taller.
--   **PATCH**: corrección de errores o ajustes menores sin impacto metodológico.
+- **MAJOR**: cambios estructurales en la metodología del rally o en la arquitectura del sistema AR.
+- **MINOR**: incorporación de nuevas estaciones, funcionalidades o mejoras en el flujo de la experiencia.
+- **PATCH**: corrección de errores o ajustes menores sin impacto metodológico.
 
 ### Ejemplo de versiones:
 
--   `v1.0.0` → versión inicial del taller y la herramienta
--   `v1.1.0` → mejora del cálculo del índice cromático
--   `v1.1.1` → corrección de errores en interfaz
+- `v1.0.0` → versión inicial del rally y la herramienta AR
+- `v1.1.0` → incorporación de nueva estación o exoplaneta
+- `v1.1.1` → corrección de errores de estabilización del tracking AR
 
 ## Contribuciones
 
-Este proyecto está abierto a contribuciones por parte del colectivo Singularity, así como de colaboradores externos interesados en ciencia ciudadana, percepción remota y educación tecnológica.
+Este proyecto está abierto a contribuciones por parte de los colectivos organizadores, así como de colaboradores externos interesados en divulgación científica, astrobiología y desarrollo de experiencias de realidad aumentada.
 
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/singularity/detectives-estres-vegetal.git
-cd detectives-estres-vegetal
+git clone https://github.com/Singularity-MX/nexo-colectivo.git
+cd nexo-colectivo
 ```
+
 ### 2. Crear una nueva rama
+
 Se recomienda realizar el desarrollo en una rama independiente:
+
 ```bash
 git checkout -b feature/nombre-de-la-mejora
 ```
+
 Ejemplos:
--   `feature/mejora-ui-movil`
--   `feature/nuevo-indice-vegetal`
--   `fix/error-calculo-rgb`
+
+- `feature/nueva-estacion-exoplaneta`
+- `feature/mejora-estabilizacion-ar`
+- `fix/error-textura-planeta`
 
 ### 3. Realizar cambios
--   Mantener coherencia con la metodología del taller.
--   Evitar modificaciones estructurales sin justificación técnica.
--   Documentar adecuadamente los cambios relevantes en el código y en la documentación del proyecto.
+
+- Mantener coherencia con la metodología del rally y el fundamento astrobiológico.
+- Evitar modificaciones estructurales sin justificación técnica o pedagógica.
+- Documentar adecuadamente los cambios relevantes en el código y en la documentación del proyecto.
 
 ### 4. Commit con formato estructurado
+
 Se utiliza el siguiente estándar de commits:
+
 ```bash
 tipo: descripción breve
 
@@ -267,25 +275,31 @@ tipo: descripción breve
 
 Tipos válidos:
 
--   `feat` → nueva funcionalidad
--   `fix` → corrección de errores
--   `docs` → cambios en documentación
--   `refactor` → reestructuración del código sin cambio funcional
--   `test` → pruebas
+- `feat` → nueva funcionalidad
+- `fix` → corrección de errores
+- `docs` → cambios en documentación
+- `refactor` → reestructuración del código sin cambio funcional
+- `test` → pruebas
 
 Ejemplo:
-```bash
-feat: implementación de índice cromático alternativo
 
-Se incorpora una variante de la fórmula basada en (G - R) / (G + R + 1) para mejorar estabilidad numérica.
+```bash
+feat: implementación de estabilización de pose por interpolación esférica
+
+Se incorpora suavizado SLERP con zona muerta para reducir el jitter del tracking en condiciones de baja iluminación.
 ```
+
 ### 5. Push de la rama
+
 ```bash
 git push origin feature/nombre-de-la-mejora
 ```
+
 ### 6. Abrir un pull request
+
 Al abrir un PR en GitHub, utilizar la siguiente plantilla:
-```bash
+
+```markdown
 ## Descripción
 
 Describe brevemente el cambio realizado.
@@ -301,48 +315,62 @@ Describe brevemente el cambio realizado.
 
 Explica por qué este cambio es necesario desde una perspectiva técnica o metodológica.
 
-## Impacto en el taller
+## Impacto en el rally
 
-- [ ] No afecta la dinámica del taller
+- [ ] No afecta la dinámica del evento
 - [ ] Modifica ligeramente la experiencia del usuario
-- [ ] Requiere actualización del protocolo del taller
+- [ ] Requiere actualización del protocolo del rally
 
 ## Evidencia (si aplica)
 
 Capturas de pantalla, pruebas o resultados experimentales.
 ```
 
-### 7. Revisión y merge.
+### 7. Revisión y merge
+
 Todos los Pull Requests serán revisados por el equipo de Singularity antes de su integración en la rama principal (`main` o `dev`), garantizando consistencia metodológica y técnica del proyecto.
 
 ## Créditos
 
+La elaboración de este evento fue realizada en colaboración entre los colectivos **Singularity**, **Alma Canina**, **Acompaña Mente** e **IMJU León**, unidos por la divulgación tecnológica, el bienestar social y la ciencia abierta.
 
-La elaboración de este evento fue realizada en su totalidad por el colectivo **Singularity**, dentro del área de Ciencia y Tecnología Aplicada.
+Herramienta y escáner AR desarrollados por: **[@replacedspace17](https://github.com/replacedspace17)**
 
-Herramienta desarrollada por: **[@ReplacedSpace17](https://github.com/replacedspace17)**
-
-Para colaboraciones, puedes contactarnos mediante el correo:  
+Para colaboraciones, puedes contactarnos mediante el correo:
 replacedspace17@singularitymx.org
 
-### Redes del colectivo
+### Redes de Singularity (coordinación técnica)
 
--   Página web: [https://singularitymx.org](https://singularitymx.org)
--   Instagram: [https://instagram.com/singularity.open](https://instagram.com/singularity.open)
--   Facebook: [https://facebook.com/singularity.py](https://facebook.com/singularity.py)
+- Página web: [https://singularitymx.org](https://singularitymx.org)
+- Instagram: [https://instagram.com/singularity.open](https://instagram.com/singularity.open)
+- GitHub: [https://github.com/Singularity-MX](https://github.com/Singularity-MX)
 
-## Sobre Singularity
-**Singularity** es un colectivo de ciencia abierta y tecnología fundado en 2023 en la ciudad de León, Guanajuato. Su objetivo es el desarrollo de proyectos interdisciplinarios en la intersección entre computación, biología, ingeniería y educación experimental.
+## Sobre los colectivos organizadores
 
-Las áreas de trabajo del colectivo incluyen, entre otras:
+### Singularity
 
--   Ciencia ciudadana y divulgación científica
--   Desarrollo de herramientas tecnológicas educativas
--   Biología DIY (Do It Yourself Biology)
--   Sistemas bio-digitales y experimentación con datos biológicos
+Colectivo de ciencia abierta y software libre, fundado en 2023 en la ciudad de León, Guanajuato. Parte del movimiento global **DIYbio** y la **DIYbiosphere**. Desarrolla tecnología accesible para monitorear y entender el entorno, en la intersección entre computación, biología, ingeniería y educación experimental.
 
-El colectivo pertenece a iniciativas globales como **DIY Biology**, a través de comunidades abiertas como [DIYbio](https://diybio.org/), así como el concepto de **DIY Biosphere**, enfocado en la experimentación biológica distribuida y de bajo costo.
+- Web: [https://singularitymx.org](https://singularitymx.org)
+- Instagram: [https://instagram.com/singularity.open](https://instagram.com/singularity.open)
+- GitHub: [https://github.com/Singularity-MX](https://github.com/Singularity-MX)
 
-Si estás interesado en formar parte del colectivo, puedes registrarte en el siguiente enlace:  
-[https://tally.so/r/VLV7eM](https://tally.so/r/VLV7eM)
+### Alma Canina
 
+Organización dedicada al bienestar de perros en situación de calle, mediante campañas de adopción, recolección de donativos, esterilizaciones y actividades de apoyo en colaboración con albergues locales de León.
+
+- Instagram: [https://www.instagram.com/almacanina.leon](https://www.instagram.com/almacanina.leon)
+
+### Acompaña Mente
+
+Iniciativa enfocada en la promoción de la salud mental mediante talleres, pláticas y actividades formativas que fomentan el bienestar emocional, el autoconocimiento y el desarrollo personal.
+
+### IMJU León
+
+Instituto Municipal de las Juventudes de León. Organismo que impulsa el desarrollo integral de las juventudes mediante programas, actividades y oportunidades de participación enfocadas en educación, liderazgo, emprendimiento y bienestar social.
+
+- Web: [http://leonjoven.gob.mx/](http://leonjoven.gob.mx/)
+- Facebook: [https://www.facebook.com/IMJULeon](https://www.facebook.com/IMJULeon)
+- Instagram: [https://www.instagram.com/imjuleon/](https://www.instagram.com/imjuleon/)
+
+Si tu colectivo está interesado en participar en futuras ediciones del Nexo, puedes contactar a cualquiera de las organizaciones listadas anteriormente.

@@ -15,7 +15,7 @@ const StationCard = ({
 }) => {
   return (
     <motion.div
-      whileHover={isMobile ? {} : { y: -4 }} // Deshabilitar hover en móvil
+      whileHover={isMobile ? {} : { y: -4 }} 
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2 }}
       onClick={onClick}

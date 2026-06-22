@@ -6,8 +6,6 @@ import 'katex/dist/katex.min.css';
 
 const root = document.getElementById("root");
 
-//pages
-
 import Home from './pages/Home';
 import Information from './pages/Information';
 import Scan from './pages/Scan';
