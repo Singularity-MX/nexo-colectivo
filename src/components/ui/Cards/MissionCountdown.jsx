@@ -5,17 +5,24 @@ import { motion, AnimatePresence } from "framer-motion";
 const { Text } = Typography;
 const ACCENT = "#5ad1c9";
 const MONO = "'JetBrains Mono', 'Courier New', monospace";
+
+// ============================================================
+// FECHA OBJETIVO: 28 de junio 2026, 9:00 AM (hora local)
+// ============================================================
 const TARGET_DATE = new Date("2026-06-28T09:00:00");
 
 function useCountdown(target) {
   const [timeLeft, setTimeLeft] = useState(() => target.getTime() - Date.now());
 
   useEffect(() => {
-    // Usar interval más largo en móvil para ahorrar batería
-    const interval = window.innerWidth < 768 ? 2000 : 1000;
-    const id = setInterval(() => {
-      setTimeLeft(target.getTime() - Date.now());
-    }, interval);
+    const tick = () => {
+      const remaining = target.getTime() - Date.now();
+      setTimeLeft(remaining);
+    };
+
+    tick();
+
+    const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, [target]);
 
@@ -31,14 +38,17 @@ function useCountdown(target) {
   };
 }
 
-const FlipDigit = ({ value, isMobile }) => {
+/* =========================
+   DÍGITO ANIMADO 
+========================= */
+const FlipDigit = ({ value }) => {
   const padded = String(value).padStart(2, "0");
   return (
     <div
       style={{
         position: "relative",
-        width: isMobile ? 36 : 44,
-        height: isMobile ? 42 : 52,
+        width: 44,
+        height: 52,
         overflow: "hidden",
         background: "rgba(255,255,255,0.04)",
         border: `1px solid ${ACCENT}33`,
@@ -59,7 +69,7 @@ const FlipDigit = ({ value, isMobile }) => {
             alignItems: "center",
             justifyContent: "center",
             fontFamily: MONO,
-            fontSize: isMobile ? 22 : 26,
+            fontSize: 26,
             fontWeight: 700,
             color: "#fff",
           }}
@@ -71,14 +81,17 @@ const FlipDigit = ({ value, isMobile }) => {
   );
 };
 
-const TimeBlock = ({ value, label, isMobile }) => (
+/* =========================
+   BLOQUE: número y etiqueta
+========================= */
+const TimeBlock = ({ value, label }) => (
   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-    <FlipDigit value={value} isMobile={isMobile} />
+    <FlipDigit value={value} />
     <Text
       style={{
         fontFamily: MONO,
         color: "rgba(255,255,255,0.4)",
-        fontSize: isMobile ? 8.5 : 9.5,
+        fontSize: 9.5,
         letterSpacing: 1.5,
         textTransform: "uppercase",
       }}
@@ -88,12 +101,12 @@ const TimeBlock = ({ value, label, isMobile }) => (
   </div>
 );
 
-const Separator = ({ isMobile }) => (
+const Separator = () => (
   <Text
     style={{
       fontFamily: MONO,
       color: `${ACCENT}66`,
-      fontSize: isMobile ? 18 : 22,
+      fontSize: 22,
       fontWeight: 700,
       marginTop: -16,
     }}
@@ -102,6 +115,9 @@ const Separator = ({ isMobile }) => (
   </Text>
 );
 
+/* =========================
+   cuenta regresiva completa
+========================= */
 const MissionCountdown = ({ isMobile }) => {
   const { days, hours, minutes, seconds, isOver } = useCountdown(TARGET_DATE);
 
@@ -120,6 +136,7 @@ const MissionCountdown = ({ isMobile }) => {
         boxShadow: `0 0 30px rgba(90,209,201,0.08)`,
       }}
     >
+    
       <div
         style={{
           position: "absolute",
@@ -147,53 +164,84 @@ const MissionCountdown = ({ isMobile }) => {
             borderRadius: "50%",
             background: isOver ? "#ff5c5c" : ACCENT,
             boxShadow: `0 0 8px ${isOver ? "#ff5c5c" : ACCENT}`,
+            animation: isOver ? "none" : "pulse-countdown 1.5s infinite",
           }}
         />
         <Text
           style={{
             fontFamily: MONO,
-            color: "rgba(255,255,255,0.5)",
+            color: isOver ? "#ff5c5c" : "rgba(255,255,255,0.5)",
             fontSize: isMobile ? 10 : 11,
             letterSpacing: 2,
             textTransform: "uppercase",
           }}
         >
-          {isOver ? "MISIÓN EN CURSO" : "CUENTA REGRESIVA"}
+          {isOver ? "¡MISIÓN EN CURSO!" : "CUENTA REGRESIVA"}
         </Text>
       </div>
 
       {isOver ? (
-        <Text
-          style={{
-            display: "block",
-            textAlign: "center",
-            color: ACCENT,
-            fontFamily: MONO,
-            fontSize: isMobile ? 13 : 15,
-            fontWeight: 700,
-            letterSpacing: 1,
-          }}
-        >
-          🚀 EL RALLY HA COMENZADO
-        </Text>
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            gap: isMobile ? 4 : 8,
-            flexWrap: "nowrap",
-          }}
-        >
-          <TimeBlock value={days} label="Días" isMobile={isMobile} />
-          <Separator isMobile={isMobile} />
-          <TimeBlock value={hours} label="Horas" isMobile={isMobile} />
-          <Separator isMobile={isMobile} />
-          <TimeBlock value={minutes} label="Min" isMobile={isMobile} />
-          <Separator isMobile={isMobile} />
-          <TimeBlock value={seconds} label="Seg" isMobile={isMobile} />
+        <div style={{ textAlign: "center" }}>
+          <Text
+            style={{
+              display: "block",
+              color: ACCENT,
+              fontFamily: MONO,
+              fontSize: isMobile ? 13 : 15,
+              fontWeight: 700,
+              letterSpacing: 1,
+              marginBottom: 6,
+            }}
+          >
+            🚀 EL RALLY HA COMENZADO
+          </Text>
+          <Text
+            style={{
+              display: "block",
+              color: "rgba(255,255,255,0.4)",
+              fontSize: isMobile ? 10 : 11,
+              fontFamily: MONO,
+            }}
+          >
+            28 DE JUNIO 2026 · 9:00 AM
+          </Text>
         </div>
+      ) : (
+        <>
+          {/* Contador */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              gap: isMobile ? 4 : 8,
+              flexWrap: "nowrap",
+              marginBottom: isMobile ? 10 : 14,
+            }}
+          >
+            <TimeBlock value={days} label="Días" />
+            <Separator />
+            <TimeBlock value={hours} label="Horas" />
+            <Separator />
+            <TimeBlock value={minutes} label="Min" />
+            <Separator />
+            <TimeBlock value={seconds} label="Seg" />
+          </div>
+
+          
+          <Text
+            style={{
+              display: "block",
+              textAlign: "center",
+              color: "rgba(255,255,255,0.3)",
+              fontSize: isMobile ? 9 : 10,
+              fontFamily: MONO,
+              letterSpacing: 1,
+            }}
+          >
+            28 JUN 2026 · 09:00 AM
+          </Text>
+        </>
       )}
     </div>
   );

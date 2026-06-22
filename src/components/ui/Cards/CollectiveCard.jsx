@@ -21,11 +21,6 @@ const iconMap = {
   Website: <GlobalOutlined />,
 };
 
-/*
-  Card de colectivo — versión "mission control":
-  panel oscuro con esquinas cortadas (mismo lenguaje de StationCard),
-  línea de acento turquesa superior, labels en monospace.
-*/
 const CollectiveCard = ({
   title,
   image,
@@ -59,7 +54,7 @@ const CollectiveCard = ({
         boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
       }}
     >
-      {/* Línea de acento superior, igual que StationCard */}
+      
       <div
         style={{
           position: "absolute",
@@ -78,8 +73,7 @@ const CollectiveCard = ({
           flexDirection: isMobile ? "column" : "row",
         }}
       >
-        {/* HEADER MOBILE — fuera de la imagen, evita empalme con
-            logos/texto que ya traen las fotos */}
+       
         {isMobile && (
           <div
             style={{
@@ -128,7 +122,7 @@ const CollectiveCard = ({
           </div>
         )}
 
-        {/* IMAGE SIDE */}
+        
         <div
           style={{
             width: isMobile ? "100%" : "45%",
@@ -159,8 +153,7 @@ const CollectiveCard = ({
             />
           )}
 
-          {/* Vignette oscuro consistente con el fondo espacial.
-              En desktop además da espacio para el corte HUD del borde. */}
+        
           <div
             style={{
               position: "absolute",
@@ -172,7 +165,6 @@ const CollectiveCard = ({
           />
         </div>
 
-        {/* CONTENT SIDE */}
         <div
           style={{
             width: isMobile ? "100%" : "55%",

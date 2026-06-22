@@ -17,7 +17,7 @@ import leon450Logo from "../assets/logos/nexo.png";
 const { Text } = Typography;
 
 /* =========================
-   HOOK: Detectar dispositivo móvil
+   HOOK para detectar dispositivo móvil
 ========================= */
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -65,7 +65,7 @@ const stationsData = [
 ];
 
 /* =========================
-   BACKGROUND OPTIMIZADO
+   BACKGROUND 
 ========================= */
 const Background = ({ isMobile }) => (
   <div
@@ -78,14 +78,13 @@ const Background = ({ isMobile }) => (
       background: "#04060e",
     }}
   >
-    {/* Reducir complejidad del SVG en móvil */}
     <SvgComponent
       preserveAspectRatio="xMidYMid slice"
       style={{
         width: "100vw",
         height: "100dvh",
-        opacity: isMobile ? 0.08 : 0.12, // Menos opacidad en móvil
-        transform: isMobile ? 'scale(1.5)' : 'scale(1)', // Zoom out en móvil
+        opacity: isMobile ? 0.08 : 0.12, 
+        transform: isMobile ? 'scale(1.5)' : 'scale(1)', 
       }}
     />
     <div
@@ -96,14 +95,14 @@ const Background = ({ isMobile }) => (
         width: isMobile ? "80vw" : "60vw",
         height: isMobile ? "80vw" : "60vw",
         background:
-          "radial-gradient(circle, rgba(90,209,201,0.08) 0%, transparent 70%)", // Menos intenso
+          "radial-gradient(circle, rgba(90,209,201,0.08) 0%, transparent 70%)", 
       }}
     />
   </div>
 );
 
 /* =========================
-   FOOTER OPTIMIZADO
+   FOOTER 
 ========================= */
 const OrganizersFooter = ({ isMobile }) => (
   <div
@@ -145,20 +144,19 @@ const OrganizersFooter = ({ isMobile }) => (
 );
 
 /* =========================
-   HOME OPTIMIZADO
+   HOME 
 ========================= */
 const Home = () => {
   const navigate = useNavigate();
   const loading = usePageLoader([]);
   const isMobile = useIsMobile();
 
-  const items = [
+   const items = [
     { key: "", label: "Inicio" },
-    { key: "information", label: isMobile ? "Info" : "¿Cómo funciona?" },
+    { key: "information", label: "Astrobiología" },
     { key: "scan", label: "Escáner" },
-    { key: "about", label: isMobile ? "Nosotros" : "Sobre nosotros" },
+    { key: "about", label: "Sobre nosotros" },
   ];
-
   const handleNavigate = (key) => {
     navigate(`/${key}`);
   };

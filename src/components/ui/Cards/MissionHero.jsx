@@ -77,14 +77,11 @@ const MissionHero = ({ meta = {}, buttonText = "Comenzar", onClick, isMobile }) 
           padding: isMobile ? "0 8px" : "0",
         }}
       >
-        Cinco colectivos, cinco estaciones, cinco mundos. Recorre el rally,
+        Cinco estaciones, cinco mundos. Recorre el rally,
         descubre cada exoplaneta y desbloquea su ficha científica con el
-        escáner AR.
+        escáner de realidad aumentada.
       </Text>
-
       <MissionCountdown isMobile={isMobile} />
-
-      {/* Panel HUD con datos del evento */}
       <div
         style={{
           position: "relative",

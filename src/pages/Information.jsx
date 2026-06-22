@@ -8,7 +8,7 @@ import letras from "../assets/Singularity.png";
 import SvgComponent from "../assets/textura.jsx";
 import HowItWorks from "../components/ui/section/InformationSection.jsx";
 
-/* ================= BACKGROUND — mismo sistema que Home/About ================= */
+/* ================= BACKGROUND ================= */
 const Background = () => (
   <div
     style={{
@@ -69,9 +69,9 @@ const itemVariants = {
 const Information = () => {
   const navigate = useNavigate();
 
-  const items = [
+    const items = [
     { key: "", label: "Inicio" },
-    { key: "information", label: "¿Cómo funciona?" },
+    { key: "information", label: "Astrobiología" },
     { key: "scan", label: "Escáner" },
     { key: "about", label: "Sobre nosotros" },
   ];

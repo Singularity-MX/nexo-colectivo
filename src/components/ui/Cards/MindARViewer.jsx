@@ -15,20 +15,20 @@ const PLANETS = [
     atmColor: 0x6699ff,
     data: {
       sistema: "Sistema Solar",
-      estrella: "Sol",
-      distancia: "0 (natal)",
+      estrella: "Sol (tipo G2V)",
+      distancia: "0 (planeta de origen)",
       radio: "6,371 km",
-      gravedad: "1 g",
-      temperatura: "15 °C",
-      atmosfera: "Nitrógeno y oxígeno",
-      agua: "Abundante",
-      diaDuracion: "24 h",
-      anioDuracion: "365 d",
+      gravedad: "1 g (9.8 m/s²)",
+      temperatura: "15 °C (media global)",
+      atmosfera: "Nitrógeno (78%), Oxígeno (21%)",
+      agua: "Abundante (71% superficie)",
+      diaDuracion: "24 horas",
+      anioDuracion: "365.25 días",
     },
     organismo: {
       nombre: "Humanos",
-      descripcion: "Especie dominante con inteligencia, tecnología y cooperación social avanzada.",
-      adaptaciones: ["Inteligencia", "Tecnología", "Cooperación social"],
+      descripcion: "Especie dominante con inteligencia avanzada, tecnología y cooperación social global.",
+      adaptaciones: ["Inteligencia abstracta", "Tecnología avanzada", "Cooperación social compleja"],
     },
     habitabilidad: 100,
   },
@@ -39,20 +39,20 @@ const PLANETS = [
     atmColor: 0x66ddaa,
     data: {
       sistema: "K2-18",
-      estrella: "Enana roja",
+      estrella: "Enana roja (tipo M2.5V)",
       distancia: "124 años luz",
-      radio: "2.6x Tierra",
-      gravedad: "1.4 g",
-      temperatura: "Compatible agua líq.",
-      atmosfera: "Rica en hidrógeno",
-      agua: "Evidencias",
-      diaDuracion: "Desconocida",
-      anioDuracion: "33 d",
+      radio: "2.6x Tierra (sub-Neptuno)",
+      gravedad: "~1.4 g (estimada)",
+      temperatura: "0 a 40 °C (zona habitable)",
+      atmosfera: "Rica en hidrógeno, vapor de agua detectado",
+      agua: "Evidencias de vapor de agua (2019)",
+      diaDuracion: "Desconocida (posible acoplamiento)",
+      anioDuracion: "33 días terrestres",
     },
     organismo: {
       nombre: "Aeromedusas",
-      descripcion: "Organismos flotantes semejantes a medusas gigantes que aprovechan corrientes atmosféricas.",
-      adaptaciones: ["Cámaras de gas", "Membranas flotantes", "Bajo consumo energético"],
+      descripcion: "Organismos flotantes similares a medusas que habitan la atmósfera rica en hidrógeno, aprovechando corrientes de convección.",
+      adaptaciones: ["Cámaras de gas (hidrógeno)", "Membranas aerodinámicas", "Metabolismo de baja energía"],
     },
     habitabilidad: 70,
   },
@@ -63,20 +63,20 @@ const PLANETS = [
     atmColor: 0xffaa66,
     data: {
       sistema: "Kepler-452",
-      estrella: "Similar al Sol",
+      estrella: "Tipo G2V (similar al Sol)",
       distancia: "1,400 años luz",
-      radio: "1.6x Tierra",
-      gravedad: "1.8 g",
-      temperatura: "20 °C",
-      atmosfera: "Probablemente densa",
-      agua: "Posible",
+      radio: "1.6x Tierra (supertierra)",
+      gravedad: "~1.8 g (estimada)",
+      temperatura: "~20 °C (equilibrio estimado)",
+      atmosfera: "Probablemente densa (por tamaño)",
+      agua: "Posible (en zona habitable)",
       diaDuracion: "Desconocida",
-      anioDuracion: "385 d",
+      anioDuracion: "385 días terrestres",
     },
     organismo: {
       nombre: "Gigantópodos",
-      descripcion: "Animales robustos con extremidades extremadamente musculosas.",
-      adaptaciones: ["Huesos densos", "Gran fuerza", "Metabolismo eficiente"],
+      descripcion: "Animales robustos con extremidades musculosas adaptadas a la alta gravedad del planeta.",
+      adaptaciones: ["Huesos reforzados", "Musculatura densa", "Metabolismo eficiente en alta gravedad"],
     },
     habitabilidad: 75,
   },
@@ -86,21 +86,21 @@ const PLANETS = [
     clouds: null,
     atmColor: 0xff6666,
     data: {
-      sistema: "Proxima Centauri",
-      estrella: "Enana roja",
+      sistema: "Próxima Centauri",
+      estrella: "Enana roja (tipo M5.5V)",
       distancia: "4.24 años luz",
-      radio: "Similar Tierra",
-      gravedad: "1.1 g",
-      temperatura: "Variable",
-      atmosfera: "Desconocida",
-      agua: "Posible",
-      diaDuracion: "Posiblemente sinc.",
-      anioDuracion: "11.2 d",
+      radio: "~1.1x Tierra (rocoso)",
+      gravedad: "~1.1 g (estimada)",
+      temperatura: "-40 a 30 °C (variable)",
+      atmosfera: "Desconocida (posible erosión estelar)",
+      agua: "Posible (en zona habitable)",
+      diaDuracion: "Posiblemente acoplado (11.2 días)",
+      anioDuracion: "11.2 días terrestres",
     },
     organismo: {
       nombre: "Criaturas reflectantes",
-      descripcion: "Criaturas con placas reflectantes capaces de resistir fuertes tormentas de radiación.",
-      adaptaciones: ["Caparazón protector", "Piel reflectante", "Alta resistencia celular"],
+      descripcion: "Seres con placas reflectantes que resisten las intensas llamaradas de su estrella anfitriona.",
+      adaptaciones: ["Caparazón reflectante", "Piel抗辐射", "Alta resistencia celular a UV"],
     },
     habitabilidad: 65,
   },
@@ -111,20 +111,20 @@ const PLANETS = [
     atmColor: 0xaa88ff,
     data: {
       sistema: "TRAPPIST-1",
-      estrella: "Enana roja ultrafría",
+      estrella: "Enana roja ultrafría (tipo M8V)",
       distancia: "40 años luz",
-      radio: "Similar Tierra",
-      gravedad: "0.93 g",
-      temperatura: "-20 a 15 °C",
-      atmosfera: "Densa, nitrógeno?",
-      agua: "Probable",
-      diaDuracion: "Acoplado marea",
-      anioDuracion: "6.1 d",
+      radio: "~0.9x Tierra (similar)",
+      gravedad: "~0.93 g (estimada)",
+      temperatura: "-20 a 15 °C (equilibrio)",
+      atmosfera: "Posiblemente densa (¿nitrógeno?)",
+      agua: "Probable (océano subsuperficial?)",
+      diaDuracion: "Acoplado por marea (6.1 días)",
+      anioDuracion: "6.1 días terrestres",
     },
     organismo: {
       nombre: "Hongos bioluminiscentes",
-      descripcion: "Hongos gigantes que usan bioluminiscencia para comunicarse en la zona oscura del planeta.",
-      adaptaciones: ["Bioluminiscencia", "Sensores químicos", "Comunicación por pulsos"],
+      descripcion: "Hongos gigantes que usan bioluminiscencia para comunicarse en la zona de penumbra eterna del planeta.",
+      adaptaciones: ["Bioluminiscencia química", "Sensores de luz infrarroja", "Comunicación por pulsos lumínicos"],
     },
     habitabilidad: 80,
   },
@@ -234,10 +234,7 @@ const preloadTextures = async (onProgress) => {
   
   await Promise.all(
     uniqueTextures.map(async (url) => {
-      // Y dentro del map, antes del try:
-
       try {
-        // Intentar cargar desde IndexedDB
         const cachedBlob = await getFromCache(url);
         
         if (cachedBlob) {
@@ -254,7 +251,6 @@ const preloadTextures = async (onProgress) => {
         console.warn(`Error lectura caché: ${url}`);
       }
       
-      // Descargar y guardar en caché
       try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -693,7 +689,7 @@ function createStabilizedRig(anchorGroup) {
 }
 
 // =====================================================================
-//  UI: PANTALLA PREVIA CON BARRA DE PROGRESO
+//  PANTALLA PREVIA CON BARRA DE PROGRESO
 // =====================================================================
 
 const PreScanScreen = ({ onStart, status, progress, message, onClearCache, cacheCount }) => (
@@ -829,7 +825,7 @@ const PreScanScreen = ({ onStart, status, progress, message, onClearCache, cache
           ))}
         </div>
 
-        {/* BOTÓN CON BARRA DE PROGRESO */}
+        
         <button
           onClick={status === "loading" ? undefined : onStart}
           disabled={status === "loading"}
@@ -861,7 +857,7 @@ const PreScanScreen = ({ onStart, status, progress, message, onClearCache, cache
         >
           {status === "loading" ? (
             <>
-              {/* Barra de progreso */}
+            
               <div
                 style={{
                   position: "absolute",
@@ -874,7 +870,6 @@ const PreScanScreen = ({ onStart, status, progress, message, onClearCache, cache
                 }}
               />
               
-              {/* Texto y spinner */}
               <div style={{ display: "flex", alignItems: "center", gap: 10, zIndex: 1, position: "relative" }}>
                 <span
                   style={{
@@ -944,7 +939,7 @@ const PreScanScreen = ({ onStart, status, progress, message, onClearCache, cache
 );
 
 // =====================================================================
-//  UI: HUD DURANTE EL ESCANEO
+//  HUD DURANTE EL ESCANEO
 // =====================================================================
 
 const ScanningHUD = ({ onStop }) => (
@@ -1270,7 +1265,7 @@ export default function MindARViewer({ onStateChange } = {}) {
     if (mindarRef.current) {
       const mindarThree = mindarRef.current;
       
-      // Mostrar mensaje de limpieza
+      // mostrar mensaje de limpieza
       Swal.fire({
         title: 'Deteniendo AR...',
         text: 'Limpiando recursos',
@@ -1283,18 +1278,12 @@ export default function MindARViewer({ onStateChange } = {}) {
         }
       });
       
-      // 1. Detener loop de animación inmediatamente
+      
       mindarThree.renderer.setAnimationLoop(null);
-      
-      // 2. Limpiar escena
       const { scene, renderer } = mindarThree;
-      
-      // Remover todos los objetos de la escena
       while (scene.children.length > 0) {
         const child = scene.children[0];
         scene.remove(child);
-        
-        // Recursivamente limpiar
         if (child.traverse) {
           child.traverse((node) => {
             if (node.geometry) node.geometry.dispose();
@@ -1308,32 +1297,18 @@ export default function MindARViewer({ onStateChange } = {}) {
           });
         }
       }
-      
-      // 3. Detener MindAR
       await mindarThree.stop();
-      
-      // 4. Limpiar renderer
       renderer.dispose();
       renderer.forceContextLoss();
-      
-      // 5. Limpiar contenedor
       const container = containerRef.current;
       if (container) {
-        // Limpiar todo el HTML dentro del contenedor
         container.innerHTML = '';
-        
-        // Restaurar el fondo
         container.style.background = BG_DARK;
       }
-      
       mindarRef.current = null;
-      
-      // 6. Forzar garbage collection (sugerencia al navegador)
       if (window.gc) {
         window.gc();
       }
-      
-      console.log("✅ Memoria liberada completamente");
     }
     
     setStarted(false);

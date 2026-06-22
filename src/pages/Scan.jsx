@@ -8,7 +8,7 @@ import SvgComponent from "../assets/textura.jsx";
 import MindARViewer from "../components/ui/Cards/MindARViewer";
 
 /* =========================
-   BACKGROUND — mismo sistema que Home/About/Information
+   BACKGROUND
 ========================= */
 const Background = () => (
   <div
@@ -34,15 +34,11 @@ const Background = () => (
 
 const Scan = () => {
   const navigate = useNavigate();
-
-  // Mientras el visor AR esté activo (cámara + escena 3D ocupando toda
-  // la pantalla), ocultamos el Navbar y el Background propios de la
-  // página: el MindARViewer ya tiene su propio fondo y su propio HUD.
   const [arActive, setArActive] = useState(false);
 
-  const items = [
-    { key: "home", label: "Inicio" },
-    { key: "information", label: "¿Cómo funciona?" },
+    const items = [
+    { key: "", label: "Inicio" },
+    { key: "information", label: "Astrobiología" },
     { key: "scan", label: "Escáner" },
     { key: "about", label: "Sobre nosotros" },
   ];
@@ -80,14 +76,6 @@ const Scan = () => {
           />
         )}
 
-        {/*
-          MindARViewer maneja su propia capa fixed/fullscreen
-          internamente (tanto la pantalla de briefing como la cámara
-          en vivo), con z-index propios calibrados para quedar SIEMPRE
-          por debajo del Navbar (z-index 50) pero por encima del fondo.
-          Por eso este <main> ya no necesita altura ni padding
-          especiales: solo actúa como punto de montaje.
-        */}
         <main>
           <MindARViewer onStateChange={setArActive} />
         </main>

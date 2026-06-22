@@ -75,7 +75,7 @@ const collectivesData = [
 ];
 
 /* =========================
-   BACKGROUND — mismo sistema que Home
+   BACKGROUND
 ========================= */
 const Background = () => (
   <div
@@ -116,14 +116,12 @@ const Background = () => (
 const About = () => {
   const navigate = useNavigate();
   const loading = usePageLoader([]);
-
   const items = [
     { key: "", label: "Inicio" },
-    { key: "information", label: "¿Cómo funciona?" },
+    { key: "information", label: "Astrobiología" },
     { key: "scan", label: "Escáner" },
     { key: "about", label: "Sobre nosotros" },
   ];
-
   const handleNavigate = (key) => {
     navigate(`/${key === "home" ? "" : key}`);
   };

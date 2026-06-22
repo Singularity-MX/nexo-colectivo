@@ -41,7 +41,7 @@ const Navbar = ({
         width: isMobile ? "101vw" : "auto",
       }}
     >
-      {/* LOGO */}
+
       <div
         onClick={() => handleClick({ key: "home" })}
         style={{
@@ -65,7 +65,7 @@ const Navbar = ({
         </div>
       </div>
 
-      {/* DESKTOP MENU */}
+     
       {!isMobile && (
         <Menu
           mode="horizontal"
@@ -82,7 +82,7 @@ const Navbar = ({
         />
       )}
 
-      {/* MOBILE HAMBURGER */}
+      
       {isMobile && (
         <>
           <Button
@@ -114,7 +114,7 @@ const Navbar = ({
               },
             }}
           >
-            {/* Glow radial de fondo, consistente con el resto de la app */}
+          
             <div
               style={{
                 position: "absolute",
@@ -128,7 +128,7 @@ const Navbar = ({
               }}
             />
 
-            {/* BOTÓN CERRAR */}
+         
             <div
               style={{
                 position: "absolute",
@@ -170,7 +170,7 @@ const Navbar = ({
                 zIndex: 1,
               }}
             >
-              {/* Eyebrow tipo terminal, mismo lenguaje del Hero */}
+              
               <div
                 style={{
                   textAlign: "center",
@@ -204,7 +204,7 @@ const Navbar = ({
               />
             </div>
 
-            {/* ESTILOS */}
+          
             <style>
               {`
                 .ant-menu-item {
